@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>物と情報の流れ図</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .rtb-sidebar-caption {
+        font-size: 14px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.8);
+        padding: 24px 0 0 24px;
+      }
+
+      #container {
+        height: auto; 
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        padding: 14px;
+        box-sizing: border-box;
+        touch-action: pan-y;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        padding-left: 32px;
+        margin-bottom: 32px;
+      }
+
+      .draggable-item {
+        margin:12px;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+        font-size: 18px;
+        font-family: sans-serif;
+        background-color: #F5F5F7;
+        border-radius: 15px;
+      }
+
+  /*       .draggable-item.red {
+          background-color: #f24726;
+        }
+
+        .draggable-item.green {
+          background-color: #0ca788;
+        } */
+
+      .koutei{
+          margin: auto;
+          width: 20px;
+          height: 70px;
+          background-color: #E6E6E6;
+          border: solid 1px #000000;
+          border-radius: 4px;
+          opacity: 1;
+      }
+
+      .soshiki{
+          margin: auto;
+          width: 65px;
+          height: 40px;
+          border: solid 1px #000000;
+          border-radius: 8px;
+      }
+
+      .arrow {
+        border-bottom: 2px solid #000;
+        width: 40px;
+        margin-right: 10px;
+        position:  relative;
+      }
+
+      .arrow::after {
+        content:  '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 0 7px 12px;
+        border-color: transparent transparent transparent #000000;
+        position:  absolute;
+        top: -6px;
+        left: 100%;
+      }
+      
+      .dasharrow {
+        border-bottom: 2px dashed #000;
+        width: 40px;
+        margin-left: 10px;
+        position:  relative;
+      }
+
+      .dasharrow::before {
+        content:  '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 12px 7px 0;
+        border-color: transparent #000000 transparent transparent;
+        position:  absolute;
+        top: -6px;
+        right: 100%;
+      }
+      
+      .leadarrow {
+        border-bottom: 2px solid #000;
+        width: 40px;
+        position:  relative;
+      }
+      
+      .leadarrow::before {
+        content:  '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 0 7px 12px;
+        border-color: transparent transparent transparent #000000;
+        position:  absolute;
+        top: -6px;
+        left: 100%;
+      }
+
+      .leadarrow::after {
+        content:  '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 12px 7px 0;
+        border-color: transparent #000000 transparent transparent;
+        position:  absolute;
+        top: -6px;
+        right: 100%;
+      }
+
+      .image-box img {
+        max-width: 70px;
+        max-height: 70px;
+        cursor: pointer;
+        background-color: #F5F5F7;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="rtb-sidebar-caption">物と情報の流れ図</div>
+    <div id="container"></div>
+    <script src="https://miro.com/app/static/sdk.1.1.js"></script>
+    <script src="content.js"></script>
+  </body>
+</html>
