@@ -17,7 +17,7 @@ const images = [
 
 function getImage(img) {
   return `<div class="draggable-item image-box">
-		<img src="${img.src}" data-image-url="https://keiyaguchi-tmc.github.io/Miro2022-02-01/${img.src}">
+		<img src="${img.src}" data-image-url="https://keiyaguchi-tmc.github.io/MJ-PoC/${img.src}">
 	  </div>`
 }
 
