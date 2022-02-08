@@ -1,24 +1,33 @@
 const images = [
-  // {src: 'img/工程名.svg', width: 100, height: 100, type: 'shape'},
-  // {src: 'img/会社・組織名.svg', width: 100, height: 100, type: 'shape'},
   // {src: 'img/物の流れ.svg', width: 100, height: 100, type: 'line'},
   // {src: 'img/情報の流れ.svg', width: 100, height: 100, type: 'line'},
   // {src: 'img/リードタイム.svg', width: 100, height: 100, type: 'line'},
-  { src: 'img/かんばん.svg', width: 100, height: 100, type: 'img' },
-  { src: 'img/ロット形式ポスト.svg', width: 100, height: 100, type: 'img' },
-  { src: 'img/物と情報の停滞.svg', width: 100, height: 100, type: 'img' },
-  { src: 'img/ストア（店）.svg', width: 100, height: 100, type: 'img' },
-  { src: 'img/紙・指示書.svg', width: 100, height: 100, type: 'img' },
-  { src: 'img/Eメール.svg', width: 100, height: 100, type: 'img' },
-  { src: 'img/FAX.svg', width: 100, height: 100, type: 'img' },
-  { src: 'img/電話.svg', width: 100, height: 100, type: 'img' },
-  { src: 'img/システム・アプリケーション.svg', width: 100, height: 100, type: 'img' },
+  { src: 'img/かんばん.svg', width: 100, height: 100, type: 'かんばん' },
+  { src: 'img/ロット形式ポスト.svg', width: 100, height: 100, type: 'ロット形式ポスト' },
+  { src: 'img/物と情報の停滞.svg', width: 100, height: 100, type: '停滞' },
+  { src: 'img/ストア（店）.svg', width: 100, height: 100, type: 'ストア（店）' },
+  { src: 'img/紙・指示書.svg', width: 100, height: 100, type: '紙・指示書' },
+  { src: 'img/Eメール.svg', width: 100, height: 100, type: 'Eメール' },
+  { src: 'img/FAX.svg', width: 100, height: 100, type: 'FAX' },
+  { src: 'img/電話.svg', width: 100, height: 100, type: '電話' },
+  { src: 'img/システム・アプリケーション.svg', width: 100, height: 100, type: 'システム・アプリケーション' },
+]
+
+const shapes = [
+  {src: `data:image/svg+xml,%3Csvg width='35' height='150' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 178, 794'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1790 819h178v794h-178z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1790 -819)'%3E%3Cpath d='M1793.5 851c0-15.74 12.76-28.5 28.5-28.5h114c15.74 0 28.5 12.76 28.5 28.5v730c0 15.74-12.76 28.5-28.5 28.5h-114c-15.74 0-28.5-12.76-28.5-28.5Z' stroke='%23000' stroke-width='6.875' stroke-miterlimit='8' fill='%23EDEDED' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E`, width: 100, height: 100, type: 'shape'},
+  {src: `data:image/svg+xml,%0A%3Csvg width='100' height='120' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M2197 1105h789v480h-789z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-2197 -1105)'%3E%3Cpath d='M2200.5 1187.33c0-43.53 35.3-78.83 78.83-78.83h624.34c43.53 0 78.83 35.3 78.83 78.83v315.34c0 43.53-35.3 78.83-78.83 78.83h-624.34c-43.53 0-78.83-35.3-78.83-78.83Z' stroke='%23000' stroke-width='6.875' stroke-miterlimit='8' fill='none' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E`, width: 100, height: 100, type: 'shape'},
+  {src: `data:image/svg+xml,%3Csvg width='300' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 100'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M2326 471h766v127h-766z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-2326 -471)'%3E%3Cpath d='M2326.5 524.188h650.34v20.625H2326.5Zm640.03-20.625 61.87 30.937-61.87 30.938Z'/%3E%3C/g%3E%3C/svg%3E`, width: 100, height: 100, type: 'shape'},
+  {src: `data:image/svg+xml,%3Csvg width='300' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 100'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M2263 688h766v127h-766z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-2263 -688)'%3E%3Cpath d='M3028.4 741.188h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-72.842v20.625h72.842Zm-62.53-20.625-61.875 30.937 61.875 30.938Z'/%3E%3C/g%3E%3C/svg%3E`, width: 100, height: 100, type: 'shape'},
+  {src: `data:image/svg+xml,%3Csvg width='300' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 200'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M3237 366h829v232h-829z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-3237 -366)'%3E%3Cpath d='M3352.06 524.188h598.78v20.625h-598.78Zm10.31 41.25L3300.5 534.5l61.87-30.937Zm578.16-61.875 61.87 30.937-61.87 30.938Z'/%3E%3Cpath d='M3631.5 535c0-10.769 8.73-19.5 19.5-19.5s19.5 8.731 19.5 19.5c0 10.77-8.73 19.5-19.5 19.5s-19.5-8.73-19.5-19.5Z' stroke='%23000' stroke-width='4.583' stroke-miterlimit='8' fill-rule='evenodd'/%3E%3Ctext font-family='Arial,Arial_MSFontService,sans-serif' font-weight='400' font-size='83' transform='translate(3601.11 471)'%3E○○%3C/text%3E%3C/g%3E%3C/svg%3E`, width: 100, height: 100, type: 'shape'},
 ]
 
 function getImage(img) {
-  return `<div class="draggable-item image-box">
-		<img src="${img.src}" data-image-url="https://keiyaguchi-tmc.github.io/MJ-PoC/${img.src}">
-	  </div>`
+  return `<div class="draggable-item">
+          <div class="zukei">
+          <img src="${img.src}" data-image-url="https://keiyaguchi-tmc.github.io/MJ-PoC/${img.src}">
+          </div>
+          <div class="text">${img.type}</div>
+	        </div>`
 }
 
 function addShapes(container) {
@@ -27,16 +36,20 @@ function addShapes(container) {
                           shape-width=100
                           shape-height=500
                           shape-type=7
-                          shape-opacity=1>
-     				              <div class="koutei"></div>
+                          shape-opacity=1
+                          data-image-url="${shapes[0].src}">
+                          <div class="zukei"><div class="koutei"></div></div>
+                          <div class="text">工程</div>
 			                    </div>
                           <div class="shape draggable-item"
                           background-color="#FFFFFF"
-                          shape-width=430
+                          shape-width=380
                           shape-height=200
                           shape-type=7
-                          shape-opacity=0>
-     		                  <div class="soshiki" ></div>
+                          shape-opacity=0
+                          data-image-url="${shapes[1].src}">
+                          <div class="zukei"><div class="soshiki" ></div></div>
+                          <div class="text">会社・組織</div>
 			                    </div>`
 }
 
@@ -44,21 +57,27 @@ function addLines(container) {
   container.innerHTML += `<div class="line draggable-item"
                           line-start=0 
                           line-end=8 
-                          line-style=2>
-                          <div class="arrow"></div>
+                          line-style=2
+                          data-image-url="${shapes[2].src}">
+                          <div class="zukei"><div class="arrow"></div></div>
+                          <div class="text">物の流れ</div>
                           </div>
                           <div class="line draggable-item"
                           line-start=8
                           line-end=0
-                          line-style=1>
-                          <div class="dasharrow"></div>
+                          line-style=1
+                          data-image-url="${shapes[3].src}">
+                          <div class="zukei"><div class="dasharrow"></div></div>
+                          <div class="text">情報の流れ</div>
                           </div>
                           <div class="line draggable-item"
                           line-start=8 
                           line-end=8 
                           line-style=2
-                          line-type="LT">
-                          <div class="leadarrow"></div>
+                          line-type="LT"
+                          data-image-url="${shapes[4].src}">
+                          <div class="zukei"><div class="leadarrow"></div></div>
+                          <div class="text">リードタイム</div>
                           </div>`
 
   // <div class="line draggable-item"
@@ -98,7 +117,7 @@ function createImage(canvasX, canvasY, url) {
 function createShape(canvasX, canvasY, wid, hei, color, text, stype, sopacity) {
   return miro.board.widgets.create({
     type: 'shape',
-    text: text,
+    //text: ,
     x: canvasX,
     y: canvasY,
     width: Number(wid),
@@ -166,11 +185,11 @@ function bootstrap() {
   let currentImageUrl
   const imageOptions = {
     draggableItemSelector: 'img',
-    onClick: async (targetElement) => {
-      const url = targetElement.getAttribute('data-image-url')
-      const widget = (await createImage(0, 0, url))[0]
-      miro.board.viewport.zoomToObject(widget)
-    },
+    // onClick: async (targetElement) => {
+    //   const url = targetElement.getAttribute('data-image-url')
+    //   const widget = (await createImage(0, 0, url))[0]
+    //   miro.board.viewport.zoomToObject(widget)
+    // },
     getDraggableItemPreview: (targetElement) => {
       //drag-started
       currentImageUrl = targetElement.getAttribute('data-image-url')
@@ -213,9 +232,13 @@ function bootstrap() {
       currentShapeText = targetElement.innerText
       currentShapeType = targetElement.getAttribute('shape-type')
       currentShapeOpacity = targetElement.getAttribute('shape-opacity')
+      currentImageUrl = targetElement.getAttribute('data-image-url')
       return {
-        url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentShapeColor}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
-        //createShape(canvasX, canvasY, currentShapeColor, currentShapeText, currentShapeType, currentShapeOpacity)
+        width: 150,
+        height: 150,
+        url: currentImageUrl,
+        //url: `data:image/svg+xml,%3Csvg width='35' height='150' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 178, 794'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1790 819h178v794h-178z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1790 -819)'%3E%3Cpath d='M1793.5 851c0-15.74 12.76-28.5 28.5-28.5h114c15.74 0 28.5 12.76 28.5 28.5v730c0 15.74-12.76 28.5-28.5 28.5h-114c-15.74 0-28.5-12.76-28.5-28.5Z' stroke='%23000' stroke-width='6.875' stroke-miterlimit='8' fill='%23EDEDED' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E`,
+        //url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentShapeColor}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
       }
     },
     onDrop: (canvasX, canvasY) => {
@@ -232,21 +255,22 @@ function bootstrap() {
   let currentlineType
   const lineOptions = {
     draggableItemSelector: '.line',
-    onClick: async (targetElement) => {
-      const sstyle = targetElement.getAttribute('line-start')
-      const estyle = targetElement.getAttribute('line-end')
-      const linestyle = targetElement.getAttribute('line-style')
-      const linetype = targetElement.getAttribute('line-type')
-      const widget = (await createLine(0, 0, sstyle, estyle, linestyle, linetype))[0]
-      miro.board.viewport.zoomToObject(widget)
-    },
+    // onClick: async (targetElement) => {
+    //   const sstyle = targetElement.getAttribute('line-start')
+    //   const estyle = targetElement.getAttribute('line-end')
+    //   const linestyle = targetElement.getAttribute('line-style')
+    //   const linetype = targetElement.getAttribute('line-type')
+    //   const widget = (await createLine(0, 0, sstyle, estyle, linestyle, linetype))[0]
+    //   miro.board.viewport.zoomToObject(widget)
+    // },
     getDraggableItemPreview: (targetElement) => {
       currentlineStartStyle = targetElement.getAttribute('line-start')
       currentlineEndStyle = targetElement.getAttribute('line-end')
       currentlineStyle = targetElement.getAttribute('line-style')
       currentlineType = targetElement.getAttribute('line-type')
+      currentImageUrl = targetElement.getAttribute('data-image-url')
       return {
-        url: `data:image/svg+xml,%3Csvg width='140' height='140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='null' x='0' y='0' fill='%23${currentlineStartStyle}' height='140' width='140'/%3E%3C/g%3E%3C/svg%3E`,
+        url: currentImageUrl
       }
     },
     onDrop: (canvasX, canvasY) => {
