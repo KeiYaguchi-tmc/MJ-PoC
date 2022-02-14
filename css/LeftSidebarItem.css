@@ -1,0 +1,157 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 24px 0 0 24px;
+}
+
+#container {
+  height: auto; 
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px;
+  box-sizing: border-box;
+  touch-action: pan-y;
+}
+
+.item-frame{
+  width: 80px;
+  height: 50px;
+  text-align: center;
+}
+
+.item-frame img {
+  max-width: 50px;
+  max-height: 50PX;
+  cursor: pointer;
+  background-color: #F5F5F7;
+  margin-top: 2px;
+  font-size: 1px;
+}
+
+.item-text {
+  width: 80px;
+  height: 20px;
+  font-size: 1px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+
+.draggable-item {
+  margin:12px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-size: 18px;
+  font-family: sans-serif;
+  background-color: #F5F5F7;
+  border-radius: 15px;
+  flex-direction: column;
+}
+
+.process{
+    width: 10px;
+    height: 40px;
+    background-color: #d3d3d3;
+    border: solid 1px #000000;
+    opacity: 1;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.organization{
+    width: 60px;
+    height: 35px;
+    border: solid 1px #000000;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.obj-flow {
+  border-bottom: 3px solid #000;
+  width: 40px;
+  margin-left: 16px;
+  padding-top: 30px;
+  position:  relative;
+}
+
+.obj-flow::after {
+  content:  '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 12px;
+  border-color: transparent transparent transparent #000000;
+  position:  absolute;
+  top: 24px;
+  left: 100%;
+}
+
+.info-flow {
+  border-bottom: 2px dashed #000;
+  width: 40px;
+  margin-left: 23px;
+  padding-top: 30px;
+  position:  relative;
+}
+
+.info-flow::before {
+  content:  '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 12px 7px 0;
+  border-color: transparent #000000 transparent transparent;
+  position:  absolute;
+  top: 24px;
+  right: 100%;
+}
+
+.lead-time {
+  border-bottom: 3px solid #000;
+  width: 40px;
+  margin: auto;
+  padding-top: 30px;
+  position:  relative;
+}
+
+.lead-time::before {
+  content:  '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 12px;
+  border-color: transparent transparent transparent #000000;
+  position:  absolute;
+  top: 24px;
+  left: 100%;
+}
+
+.lead-time::after {
+  content:  '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 12px 7px 0;
+  border-color: transparent #000000 transparent transparent;
+  position:  absolute;
+  top: 24px;
+  right: 100%;
+}
+
