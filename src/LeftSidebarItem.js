@@ -116,9 +116,9 @@ function createShape(canvasX, canvasY, wid, hei, color, text, stype, sopacity) {
 
 function createLine(canvasX, canvasY, sstyle, estyle, lstyle, linetype) {
   if(linetype == "LT"){
-    // createText(canvasX, canvasY)
-    createLeftLine(canvasX, canvasY)
-    createRightLine(canvasX, canvasY)
+    createText(canvasX, canvasY)
+    createVerticalLine(canvasX, canvasY)
+    createVerticalLine(canvasX + 400, canvasY)
   }
   return miro.board.widgets.create({
     type: 'line',
@@ -156,7 +156,7 @@ function createText(canvasX, canvasY) {
   })
 }
 
-function createLeftLine(canvasX, canvasY) {
+function createVerticalLine(canvasX, canvasY) {
   return miro.board.widgets.create({
     type: 'line',
     startPosition: {
@@ -165,28 +165,6 @@ function createLeftLine(canvasX, canvasY) {
     },
     endPosition: {
       x: canvasX,
-      y: canvasY + 200,
-    },
-    style: {
-      lineColor: '#000',
-      lineThickness: 1,//厚さ
-      lineStartStyle: 0,
-      lineEndStyle: 0,
-      lineStyle: 2, //実線=2 , 点線=1
-      lineType: 0, //曲がり度
-    },
-  })
-}
-
-function createRightLine(canvasX, canvasY) {
-  return miro.board.widgets.create({
-    type: 'line',
-    startPosition: {
-      x: canvasX + 400,
-      y: canvasY,
-    },
-    endPosition: {
-      x: canvasX + 400,
       y: canvasY + 200,
     },
     style: {
