@@ -8,7 +8,7 @@ miro.onReady(() => {
   miro.initialize({
     extensionPoints: {
       bottomBar: {
-        title: 'ツールボックス',
+        title: '組織編集画面',
         svgIcon: icon_tool,
         positionPriority: 1,
         onClick: () => {
