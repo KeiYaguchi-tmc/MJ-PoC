@@ -22,7 +22,7 @@ const shapes = [
 function getImage(img) {
   return `<div class="draggable-item">
           <div class="item-frame">
-          <img src="${img.src}" data-image-url="https://akihomaeda-tmc.github.io/index_only/${img.src}">
+          <img src="${img.src}" data-image-url="${img.src}">
           </div>
           <div class="item-text">${img.type}</div>
 	        </div>`
@@ -39,18 +39,18 @@ function addShapes(container) {
                           data-image-url="${shapes[0].src}">
                           <div class="item-frame"><div class="process"></div></div>
                           <div class="item-text">工程</div>
-			                    </div>
-                          <div class="shape draggable-item"
-                          background-color="#FFFFFF"
-                          shape-width=380
-                          shape-height=200
-                          shape-type=7
-                          shape-opacity=0
-                          shape-name="organization"
-                          data-image-url="${shapes[1].src}">
-                          <div class="item-frame"><div class="organization"></div></div>
-                          <div class="item-text">会社・組織</div>
 			                    </div>`
+                          // <div class="shape draggable-item"
+                          // background-color="#FFFFFF"
+                          // shape-width=380
+                          // shape-height=200
+                          // shape-type=7
+                          // shape-opacity=0
+                          // shape-name="organization"
+                          // data-image-url="${shapes[1].src}">
+                          // <div class="item-frame"><div class="organization"></div></div>
+                          // <div class="item-text">会社・組織</div>
+			                    // </div>
 }
 
 // 「物の流れ」「情報の流れ」「リードタイム」の記号をツールバーに描画する
