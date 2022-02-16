@@ -32,11 +32,11 @@ body {
 }
 
 .item-frame img {
-  max-width: 50px;
-  max-height: 50PX;
+  max-width: 40px;
+  max-height: 40PX;
   cursor: pointer;
   background-color: #F5F5F7;
-  margin-top: 2px;
+  margin-top: 5px;
   font-size: 1px;
 }
 
@@ -50,9 +50,9 @@ body {
 }
 
 .draggable-item {
-  margin:12px;
-  width: 80px;
-  height: 80px;
+  margin:4px;
+  width: 70px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,8 +75,8 @@ body {
 }
 
 .organization{
-    width: 60px;
-    height: 35px;
+    width: 50px;
+    height: 30px;
     border: solid 1px #000000;
     border-radius: 8px;
     margin: auto;

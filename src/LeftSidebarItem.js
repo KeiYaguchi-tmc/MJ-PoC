@@ -18,16 +18,17 @@ const shapes = [
   {src: `data:image/svg+xml,%3Csvg width='300' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 200'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M3237 366h829v232h-829z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-3237 -366)'%3E%3Cpath d='M3352.06 524.188h598.78v20.625h-598.78Zm10.31 41.25L3300.5 534.5l61.87-30.937Zm578.16-61.875 61.87 30.937-61.87 30.938Z'/%3E%3Cpath d='M3631.5 535c0-10.769 8.73-19.5 19.5-19.5s19.5 8.731 19.5 19.5c0 10.77-8.73 19.5-19.5 19.5s-19.5-8.73-19.5-19.5Z' stroke='%23000' stroke-width='4.583' stroke-miterlimit='8' fill-rule='evenodd'/%3E%3Ctext font-family='Arial,Arial_MSFontService,sans-serif' font-weight='400' font-size='83' transform='translate(3601.11 471)'%3E○○%3C/text%3E%3C/g%3E%3C/svg%3E`,  type: 'shape'},
 ]
 
-
+// 「物と情報の流れ図」記号の画像を取得する
 function getImage(img) {
   return `<div class="draggable-item">
           <div class="item-frame">
-          <img src="${img.src}" data-image-url="https://akihomaeda-tmc.github.io/index_only/${img.src}">
+          <img src="${img.src}" data-image-url="https://KeiYaguchi-tmc.github.io/MJ-PoC/${img.src}">
           </div>
           <div class="item-text">${img.type}</div>
 	        </div>`
 }
 
+// 「工程」「会社・組織」の記号をツールバーに描画する
 function addShapes(container) {
   container.innerHTML += `<div class="shape draggable-item"
                           background-color="#d3d3d3"
@@ -38,19 +39,21 @@ function addShapes(container) {
                           data-image-url="${shapes[0].src}">
                           <div class="item-frame"><div class="process"></div></div>
                           <div class="item-text">工程</div>
-			                    </div>
-                          <div class="shape draggable-item"
-                          background-color="#FFFFFF"
-                          shape-width=380
-                          shape-height=200
-                          shape-type=7
-                          shape-opacity=0
-                          data-image-url="${shapes[1].src}">
-                          <div class="item-frame"><div class="organization"></div></div>
-                          <div class="item-text">会社・組織</div>
 			                    </div>`
+                          // <div class="shape draggable-item"
+                          // background-color="#FFFFFF"
+                          // shape-width=380
+                          // shape-height=200
+                          // shape-type=7
+                          // shape-opacity=0
+                          // shape-name="organization"
+                          // data-image-url="${shapes[1].src}">
+                          // <div class="item-frame"><div class="organization"></div></div>
+                          // <div class="item-text">会社・組織</div>
+			                    // </div>
 }
 
+// 「物の流れ」「情報の流れ」「リードタイム」の記号をツールバーに描画する
 function addLines(container) {
   container.innerHTML += `<div class="line draggable-item"
                           line-start=0 
@@ -79,10 +82,12 @@ function addLines(container) {
                           </div>`
 }
 
+// 取得した「物と情報の流れ図」記号の画像をツールバーに表示する
 function addImages(container) {
   container.innerHTML += images.map((i) => getImage(i)).join('')
 }
 
+// ボードに画像を描画する
 function createImage(canvasX, canvasY, url) {
   return miro.board.widgets.create({
     type: 'image',
@@ -93,7 +98,11 @@ function createImage(canvasX, canvasY, url) {
   })
 }
 
-function createShape(canvasX, canvasY, wid, hei, color, text, stype, sopacity) {
+// ボードに図形を描画する
+function createShape(canvasX, canvasY, wid, hei, color, text, stype, sopacity, sname) {
+  if(sname == "organization"){
+    createText(canvasX - 30, canvasY + 150, "○○組織・会社", 3.42)
+  }
   return miro.board.widgets.create({
     type: 'shape',
     x: canvasX,
@@ -114,9 +123,9 @@ function createShape(canvasX, canvasY, wid, hei, color, text, stype, sopacity) {
   })
 }
 
+// ボードに線を描画する
 function createLine(canvasX, canvasY, sstyle, estyle, lstyle, linetype) {
   if(linetype == "LT"){
-    createText(canvasX, canvasY)
     createVerticalLine(canvasX, canvasY)
     createVerticalLine(canvasX + 400, canvasY)
   }
@@ -141,21 +150,22 @@ function createLine(canvasX, canvasY, sstyle, estyle, lstyle, linetype) {
   })
 }
 
-function createText(canvasX, canvasY) {
+// テキストの描画
+function createText(canvasX, canvasY, text, scale) {
   return miro.board.widgets.create({
     type: 'text',
-    x: canvasX + 200,
-    y: canvasY - 50,
-    text: 'LT',
+    x: canvasX,
+    y: canvasY,
+    text: text,
     width: 100,
-    scale: 2.57,
+    scale: scale,
     style:{
-      fontSize: 36,
       textAlign: "c",
     }
   })
 }
 
+// リードタイムの横線の描画
 function createVerticalLine(canvasX, canvasY) {
   return miro.board.widgets.create({
     type: 'line',
@@ -210,6 +220,7 @@ function bootstrap() {
   let currentShapeText
   let currentShapeType
   let currentShapeOpacity
+  let currentShapeName
   const shapeOptions = {
     draggableItemSelector: '.shape ',
     getDraggableItemPreview: (targetElement) => {
@@ -219,6 +230,7 @@ function bootstrap() {
       currentShapeText = targetElement.innerText
       currentShapeType = targetElement.getAttribute('shape-type')
       currentShapeOpacity = targetElement.getAttribute('shape-opacity')
+      currentShapeName = targetElement.getAttribute('shape-name')
       currentImageUrl = targetElement.getAttribute('data-image-url')
       return {
         width: 150,
@@ -228,7 +240,7 @@ function bootstrap() {
     },
     onDrop: (canvasX, canvasY) => {
       console.log('onDrop 2')
-      createShape(canvasX, canvasY, currentShapeWidth, currentShapeHeight, currentShapeColor, currentShapeText, currentShapeType, currentShapeOpacity)
+      createShape(canvasX, canvasY, currentShapeWidth, currentShapeHeight, currentShapeColor, currentShapeText, currentShapeType, currentShapeOpacity, currentShapeName)
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
