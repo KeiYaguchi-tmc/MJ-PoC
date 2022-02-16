@@ -43,7 +43,7 @@ body {
 .item-text {
   width: 80px;
   height: 20px;
-  font-size: 0.1px;
+  font-size: 1px;
   text-align: center;
   color: rgba(0, 0, 0, 0.8);
   font-weight: bold;
