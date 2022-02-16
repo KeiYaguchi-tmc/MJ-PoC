@@ -126,7 +126,6 @@ function createShape(canvasX, canvasY, wid, hei, color, text, stype, sopacity, s
 // ボードに線を描画する
 function createLine(canvasX, canvasY, sstyle, estyle, lstyle, linetype) {
   if(linetype == "LT"){
-    createText(canvasX + 200, canvasY - 50, "LT", 2.57)
     createVerticalLine(canvasX, canvasY)
     createVerticalLine(canvasX + 400, canvasY)
   }
