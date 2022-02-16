@@ -22,7 +22,7 @@ const shapes = [
 function getImage(img) {
   return `<div class="draggable-item">
           <div class="item-frame">
-          <img src="${img.src}" data-image-url="https://github.com/KeiYaguchi-tmc.github.io/MJ-PoC/${img.src}">
+          <img src="${img.src}" data-image-url="https://KeiYaguchi-tmc.github.io/MJ-PoC/${img.src}">
           </div>
           <div class="item-text">${img.type}</div>
 	        </div>`
