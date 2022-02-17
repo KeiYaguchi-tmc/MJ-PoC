@@ -19,7 +19,7 @@ const CONFIG = {
   },
   color: {
     highlight: '#4262ff',
-    grey: '#666'
+    black: '#000'
   }
 };
 
@@ -210,7 +210,7 @@ async function WidgetAction(){
       },
       captions: 'test',
       style: {
-        lineColor:      CONFIG.color.grey,
+        lineColor:      CONFIG.color.black,
         lineThickness:  10,
         lineStartStyle: miro.enums.lineArrowheadStyle.NONE,
         lineEndStyle:   miro.enums.lineArrowheadStyle.FILLED_ARROW,
