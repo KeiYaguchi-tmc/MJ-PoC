@@ -40,6 +40,25 @@ const lines = [
    start: '8', end: '8', style: '2', type: 'LT', classname: 'obj-flow', text: 'リードタイム'},
 ]
 
+let shapewidget = {
+  color:'',
+  width:'',
+  height:'',
+  text:'',
+  type:'',
+  opacity:'',
+  name:'',
+  url:'',
+}
+
+let linewidget = {
+  start_style:'',
+  end_style:'',
+  style:'',
+  type:'',
+  url:'',
+}
+
 // 「物と情報の流れ図」記号の画像を取得する
 function getImage(img) {
   return `<div class="draggable-item">
@@ -146,8 +165,8 @@ function createShape(canvasX, canvasY, shapewidget) {
 // }
 
 // ボードに線を描画する
-function createLine(canvasX, canvasY, sstyle, estyle, lstyle, linetype) {
-  if(linetype == "LT"){
+function createLine(canvasX, canvasY, linewidget) {
+  if(linewidget.type == "LT"){
     createVerticalLine(canvasX, canvasY)
     createVerticalLine(canvasX + 400, canvasY)
   }
@@ -164,9 +183,9 @@ function createLine(canvasX, canvasY, sstyle, estyle, lstyle, linetype) {
     style: {
       lineColor: '#000',
       lineThickness: 10,//厚さ
-      lineStartStyle: sstyle,
-      lineEndStyle: estyle, //filled_arrow=8
-      lineStyle: lstyle, //実線=2 , 点線=1
+      lineStartStyle: linewidget.start_style,
+      lineEndStyle: linewidget.end_style, //filled_arrow=8
+      lineStyle: linewidget.style, //実線=2 , 点線=1
       lineType: 0, //曲がり度
     },
   })
@@ -208,6 +227,25 @@ function createVerticalLine(canvasX, canvasY) {
       lineType: 0, //曲がり度
     },
   })
+}
+
+function shapeWidgetCreate(target){
+  shapewidget.color = target.getAttribute('background-color')
+  shapewidget.width = target.getAttribute('shape-width')
+  shapewidget.height = target.getAttribute('shape-height')
+  shapewidget.text = target.innerText
+  shapewidget.type = target.getAttribute('shape-type')
+  shapewidget.opacity = target.getAttribute('shape-opacity')
+  shapewidget.name = target.getAttribute('shape-name')
+  shapewidget.url = target.getAttribute('shape-image-url')
+}
+
+function lineWidgetCreate(target){
+  linewidget.start_style = target.getAttribute('line-start')
+  linewidget.end_style = target.getAttribute('line-end')
+  linewidget.style = target.getAttribute('line-style')
+  linewidget.type = target.getAttribute('line-type')
+  linewidget.url = target.getAttribute('line-image-url')
 }
 
 function bootstrap() {
@@ -253,51 +291,20 @@ function bootstrap() {
   miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
 
   //線
-  let currentlineStartStyle
-  let currentlineEndStyle
-  let currentlineStyle
-  let currentlineType
   const lineOptions = {
     draggableItemSelector: '.line',
     getDraggableItemPreview: (targetElement) => {
-      currentlineStartStyle = targetElement.getAttribute('line-start')
-      currentlineEndStyle = targetElement.getAttribute('line-end')
-      currentlineStyle = targetElement.getAttribute('line-style')
-      currentlineType = targetElement.getAttribute('line-type')
-      currentImageUrl = targetElement.getAttribute('line-image-url')
+      lineWidgetCreate(targetElement)
       return {
-        url: currentImageUrl
+        url: linewidget.url,
       }
     },
     onDrop: (canvasX, canvasY) => {
       console.log('onDrop 3')
-      createLine(canvasX, canvasY, currentlineStartStyle, currentlineEndStyle, currentlineStyle, currentlineType)
+      createLine(canvasX, canvasY, linewidget)
     },
   }
   miro.board.ui.initDraggableItemsContainer(container, lineOptions)
 }
 
 miro.onReady(bootstrap)
-
-
-let shapewidget = {
-  color:'',
-  width:'',
-  height:'',
-  text:'',
-  type:'',
-  opacity:'',
-  name:'',
-  url:'',
-}
-
-function shapeWidgetCreate(target){
-  shapewidget.color = target.getAttribute('background-color')
-  shapewidget.width = target.getAttribute('shape-width')
-  shapewidget.height = target.getAttribute('shape-height')
-  shapewidget.text = target.innerText
-  shapewidget.type = target.getAttribute('shape-type')
-  shapewidget.opacity = target.getAttribute('shape-opacity')
-  shapewidget.name = target.getAttribute('shape-name')
-  shapewidget.url = target.getAttribute('shape-image-url')
-}
