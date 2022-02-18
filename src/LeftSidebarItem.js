@@ -139,31 +139,6 @@ function createShape(canvasX, canvasY, shapewidget) {
   })
 }
 
-// // ボードに図形を描画する
-// function createShape(canvasX, canvasY, wid, hei, color, text, stype, sopacity, sname) {
-//   if(sname == "organization"){
-//     createText(canvasX - 30, canvasY + 150, "○○組織・会社", 3.42)
-//   }
-//   return miro.board.widgets.create({
-//     type: 'shape',
-//     x: canvasX,
-//     y: canvasY,
-//     width: Number(wid),
-//     height: Number(hei),
-//     style: {
-//       textColor: '#000',
-//       backgroundColor: color,
-//       backgroundOpacity: sopacity,
-//       borderWidth: 2,
-//       borderColor: '#000', //'transparent',
-//       fontFamily: 0,
-//       fontSize: 36,
-//       textColor: '#000',
-//       shapeType: stype,
-//     },
-//   })
-// }
-
 // ボードに線を描画する
 function createLine(canvasX, canvasY, linewidget) {
   if(linewidget.type == "LT"){
