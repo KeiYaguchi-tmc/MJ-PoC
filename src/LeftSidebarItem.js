@@ -40,6 +40,7 @@ const lines = [
    start: '8', end: '8', style: '2', type: 'LT', classname: 'obj-flow', text: 'リードタイム'},
 ]
 
+// 図形ウィジェットの状態や設定値の格納
 let shapewidget = {
   color:'',
   width:'',
@@ -51,6 +52,7 @@ let shapewidget = {
   url:'',
 }
 
+// 線ウィジェットの状態や設定値の格納
 let linewidget = {
   start_style:'',
   end_style:'',
