@@ -1,13 +1,13 @@
 const images = [
-  { src: 'img/かんばん.svg', type: 'かんばん' },
-  { src: 'img/ロット形式ポスト.svg', type: 'ロット形式ポスト' },
-  { src: 'img/物と情報の停滞.svg', type: '停滞' },
-  { src: 'img/ストア（店）.svg',  type: 'ストア（店）' },
-  { src: 'img/紙・指示書.svg',  type: '紙・指示書' },
-  { src: 'img/Eメール.svg',  type: 'Eメール' },
-  { src: 'img/FAX.svg',  type: 'FAX' },
-  { src: 'img/電話.svg',  type: '電話' },
-  { src: 'img/システム・アプリケーション.svg',  type: 'システム・アプリケーション' },
+  { src: 'img/かんばん.svg', imgname: 'かんばん' },
+  { src: 'img/ロット形式ポスト.svg', imgname: 'ロット形式ポスト' },
+  { src: 'img/物と情報の停滞.svg', imgname: '停滞' },
+  { src: 'img/ストア（店）.svg',  imgname: 'ストア（店）' },
+  { src: 'img/紙・指示書.svg',  imgname: '紙・指示書' },
+  { src: 'img/Eメール.svg',  imgname: 'Eメール' },
+  { src: 'img/FAX.svg',  imgname: 'FAX' },
+  { src: 'img/電話.svg',  imgname: '電話' },
+  { src: 'img/システム・アプリケーション.svg',  imgname: 'システム・アプリケーション' },
 ]
 
 const shapes = [
@@ -59,16 +59,6 @@ let linewidget = {
   url:'',
 }
 
-// 「物と情報の流れ図」記号の画像を取得する
-function getImage(img) {
-  return `<div class="draggable-item">
-          <div class="item-frame">
-          <img src="${img.src}" data-image-url="https://KeiYaguchi-tmc.github.io/MJ-PoC/${img.src}">
-          </div>
-          <div class="item-text">${img.type}</div>
-	        </div>`
-}
-
 // 「工程」「会社・組織」の記号をツールバーに描画する
 function addShapes(container) {
   shapes.forEach(elem => 
@@ -100,7 +90,13 @@ function addLines(container) {
 
 // 取得した「物と情報の流れ図」記号の画像をツールバーに表示する
 function addImages(container) {
-  container.innerHTML += images.map((i) => getImage(i)).join('')
+  images.forEach(elem => 
+    container.innerHTML += `<div class="draggable-item">
+                            <div class="item-frame">
+                            <img data-image-url="https://KeiYaguchi-tmc.github.io/MJ-PoC/${img.src}">
+                            </div>
+                            <div class="item-text">${img.imgname}</div>
+                            </div>`);
 }
 
 // ボードに画像を描画する
@@ -204,6 +200,7 @@ function createVerticalLine(canvasX, canvasY) {
   })
 }
 
+//htmlタグから情報を取得
 function shapeWidgetCreate(target){
   shapewidget.color = target.getAttribute('background-color')
   shapewidget.width = target.getAttribute('shape-width')
@@ -215,6 +212,7 @@ function shapeWidgetCreate(target){
   shapewidget.url = target.getAttribute('shape-image-url')
 }
 
+//htmlタグから情報を取得
 function lineWidgetCreate(target){
   linewidget.start_style = target.getAttribute('line-start')
   linewidget.end_style = target.getAttribute('line-end')
