@@ -16,16 +16,16 @@ const shapes = [
    color: '#d3d3d3', width: '79', height: '500', type: '3', opacity: '1', classname: 'process', text: '工程'},
   //工程 1/2
   {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-  color: '#d3d3d3', width: '79', height: '245', type: '3', opacity: '1', classname: 'process2', text: '工程1/2'},
+   color: '#d3d3d3', width: '79', height: '245', type: '3', opacity: '1', classname: 'process2', text: '工程1/2'},
   //工程 1/3
   {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
    color: '#d3d3d3', width: '79', height: '160', type: '3', opacity: '1', classname: 'process3', text: '工程1/3'},
   //工程 1/4
   {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-  color: '#d3d3d3', width: '79', height: '120', type: '3', opacity: '1', classname: 'process4', text: '工程1/4'},
+   color: '#d3d3d3', width: '79', height: '120', type: '3', opacity: '1', classname: 'process4', text: '工程1/4'},
   //工程 1/16
   {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-  color: '#d3d3d3', width: '79', height: '30', type: '3', opacity: '1', classname: 'process16', text: '工程1/16'},
+   color: '#d3d3d3', width: '79', height: '30', type: '3', opacity: '1', classname: 'process16', text: '工程1/16'},
 ]
 
 const lines = [
@@ -93,9 +93,9 @@ function addImages(container) {
   images.forEach(elem => 
     container.innerHTML += `<div class="draggable-item">
                             <div class="item-frame">
-                            <img data-image-url="https://KeiYaguchi-tmc.github.io/MJ-PoC/${img.src}">
+                            <img src=${elem.src} data-image-url="https://KeiYaguchi-tmc.github.io/MJ-PoC/${elem.src}">
                             </div>
-                            <div class="item-text">${img.imgname}</div>
+                            <div class="item-text">${elem.imgname}</div>
                             </div>`);
 }
 
