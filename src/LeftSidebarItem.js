@@ -12,25 +12,17 @@ const images = [
 
 const shapes = [
   //工程
-  {
-    src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-    color: '#d3d3d3', width: '79', height: '500', type: '3', opacity: '1', classname: 'process', text: '工程'
-  },
+  {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
+   color: '#d3d3d3', width: '79', height: '500', type: '3', opacity: '1', classname: 'process', text: '工程'},
   //工程 1/2
-  {
-    src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-    color: '#d3d3d3', width: '79', height: '245', type: '3', opacity: '1', classname: 'process2', text: '工程1/2'
-  },
+  {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-400,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='1361' y='522' width='282' height='804'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-1361 -522)'%3E%3Crect x='1366' y='527' width='272' height='794' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
+   color: '#d3d3d3', width: '79', height: '245', type: '3', opacity: '1', classname: 'process2', text: '工程1/2'},
   //工程 1/4
-  {
-    src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-    color: '#d3d3d3', width: '79', height: '120', type: '3', opacity: '1', classname: 'process4', text: '工程1/4'
-  },
+  {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-600,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='1758' y='538' width='281' height='439'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-1758 -538)'%3E%3Crect x='1763' y='543' width='271' height='429' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
+   color: '#d3d3d3', width: '79', height: '120', type: '3', opacity: '1', classname: 'process4', text: '工程1/4'},
   //工程 1/16
-  {
-    src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-    color: '#d3d3d3', width: '79', height: '30', type: '3', opacity: '1', classname: 'process16', text: '工程1/16'
-  },
+  {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-850,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='2095' y='538' width='281' height='117'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-2095 -538)'%3E%3Crect x='2100' y='543' width='271' height='107' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
+   color: '#d3d3d3', width: '79', height: '30', type: '3', opacity: '1', classname: 'process16', text: '工程1/16'},
 ]
 
 const lines = [
