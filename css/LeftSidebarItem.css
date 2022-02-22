@@ -74,6 +74,36 @@ body {
     margin-top: 5px;
 }
 
+.process2{
+  width: 10px;
+  height: 40px;
+  background-color: #d3d3d3;
+  border: solid 1px #000000;
+  opacity: 1;
+  margin: auto;
+  margin-top: 5px;
+}
+
+.process4{
+  width: 10px;
+  height: 40px;
+  background-color: #d3d3d3;
+  border: solid 1px #000000;
+  opacity: 1;
+  margin: auto;
+  margin-top: 5px;
+}
+
+.process16{
+  width: 10px;
+  height: 40px;
+  background-color: #d3d3d3;
+  border: solid 1px #000000;
+  opacity: 1;
+  margin: auto;
+  margin-top: 5px;
+}
+
 .organization{
     width: 50px;
     height: 30px;
@@ -83,7 +113,7 @@ body {
     margin-top: 10px;
 }
 
-.obj-flow {
+/* .obj-flow {
   border-bottom: 3px solid #000;
   width: 40px;
   margin-left: 16px;
@@ -101,7 +131,7 @@ body {
   position:  absolute;
   top: 24px;
   left: 100%;
-}
+} */
 
 .info-flow {
   border-bottom: 2px dashed #000;

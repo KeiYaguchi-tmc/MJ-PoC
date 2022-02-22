@@ -13,24 +13,24 @@ const images = [
 const shapes = [
   //工程
   {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-   color: '#d3d3d3', width: '79', height: '500', type: '3', opacity: '1', classname: 'process', text: '工程'},
+   color: '#d3d3d3', width: 140, height: 2750, type: 3, opacity: 1, classname: 'process', text: '工程'},
   //工程 1/2
   {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-400,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='1361' y='522' width='282' height='804'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-1361 -522)'%3E%3Crect x='1366' y='527' width='272' height='794' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
-   color: '#d3d3d3', width: '79', height: '245', type: '3', opacity: '1', classname: 'process2', text: '工程1/2'},
+   color: '#d3d3d3', width: 140, height: 1250, type: 3, opacity: 1, classname: 'process2', text: '工程1/2'},
   //工程 1/4
   {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-600,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='1758' y='538' width='281' height='439'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-1758 -538)'%3E%3Crect x='1763' y='543' width='271' height='429' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
-   color: '#d3d3d3', width: '79', height: '120', type: '3', opacity: '1', classname: 'process4', text: '工程1/4'},
+   color: '#d3d3d3', width: 140, height: 600, type: 3, opacity: 1, classname: 'process4', text: '工程1/4'},
   //工程 1/16
   {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-850,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='2095' y='538' width='281' height='117'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-2095 -538)'%3E%3Crect x='2100' y='543' width='271' height='107' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
-   color: '#d3d3d3', width: '79', height: '30', type: '3', opacity: '1', classname: 'process16', text: '工程1/16'},
+   color: '#d3d3d3', width: 600, height: 120, type: 3, opacity: 1, classname: 'process16', text: '工程1/16'},
 ]
 
 const lines = [
-  //物の流れ
-  {
-    src: `data:image/svg+xml,%3Csvg width='300' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 100'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M2326 471h766v127h-766z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-2326 -471)'%3E%3Cpath d='M2326.5 524.188h650.34v20.625H2326.5Zm640.03-20.625 61.87 30.937-61.87 30.938Z'/%3E%3C/g%3E%3C/svg%3E`,
-    start: '0', end: '8', xlength: 400, ylength: 0, style: '2', linename: '', classname: 'obj-flow', text: '物の流れ'
-  },
+  // //物の流れ
+  // {
+  //   src: `data:image/svg+xml,%3Csvg width='300' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 100'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M2326 471h766v127h-766z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-2326 -471)'%3E%3Cpath d='M2326.5 524.188h650.34v20.625H2326.5Zm640.03-20.625 61.87 30.937-61.87 30.938Z'/%3E%3C/g%3E%3C/svg%3E`,
+  //   start: '0', end: '8', xlength: 400, ylength: 0, style: '2', linename: '', classname: 'obj-flow', text: '物の流れ'
+  // },
   //情報の流れ
   {
     src: `data:image/svg+xml,%3Csvg width='300' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 100'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M2263 688h766v127h-766z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-2263 -688)'%3E%3Cpath d='M3028.4 741.188h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-72.842v20.625h72.842Zm-62.53-20.625-61.875 30.937 61.875 30.938Z'/%3E%3C/g%3E%3C/svg%3E`,
@@ -122,9 +122,9 @@ function createImage(canvasX, canvasY, url) {
 
 // ボードに図形を描画する
 function createShape(canvasX, canvasY, shapewidget) {
-  if (shapewidget.name == "organization") {
-    createText(canvasX - 30, canvasY + 150, "○○組織・会社", 3.42)
-  }
+  // if (shapewidget.name == "organization") {
+  //   createText(canvasX - 30, canvasY + 150, "○○組織・会社", 3.42)
+  // }
   return miro.board.widgets.create({
     type: 'shape',
     x: canvasX,
@@ -135,10 +135,10 @@ function createShape(canvasX, canvasY, shapewidget) {
       textColor: '#000',
       backgroundColor: shapewidget.color,
       backgroundOpacity: shapewidget.opacity,
-      borderWidth: 2,
+      borderWidth: 7,
       borderColor: '#000',
       fontFamily: 0,
-      fontSize: 36,
+      fontSize: 64,
       textColor: '#000',
       shapeType: shapewidget.type,
     },
@@ -172,20 +172,20 @@ function createLine(canvasX, canvasY, linewidget) {
   })
 }
 
-// テキストの描画
-function createText(canvasX, canvasY, text, scale) {
-  return miro.board.widgets.create({
-    type: 'text',
-    x: canvasX,
-    y: canvasY,
-    text: text,
-    width: 100,
-    scale: scale,
-    style: {
-      textAlign: "c",
-    }
-  })
-}
+// // テキストの描画
+// function createText(canvasX, canvasY, text, scale) {
+//   return miro.board.widgets.create({
+//     type: 'text',
+//     x: canvasX,
+//     y: canvasY,
+//     text: text,
+//     width: 100,
+//     scale: scale,
+//     style: {
+//       textAlign: "c",
+//     }
+//   })
+// }
 
 // // リードタイムの横線の描画
 // function createVerticalLine(canvasX, canvasY) {
