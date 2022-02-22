@@ -13,8 +13,14 @@
   flex-direction: column;
   box-sizing: border-box;
 }
+
 .subtitle {
-  flex-basis: 100%;
+  flex-basis: auto;
   padding: 0;
   margin: 20px 12px 0;
+}
+
+.toggle-frame {
+  padding: 0;
+  margin-top: 36px;
 }
