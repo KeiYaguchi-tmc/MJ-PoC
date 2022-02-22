@@ -81,8 +81,11 @@ miro.onReady(async function(){
 // 左メニューにボタン追加
 async function LeftSideBarAdd(){
   CONFIG.$.container.innerHTML += `
+  <div class="top-line"></div>
   <div class="subtitle">物の流れ線描写モード</div>
-  <div class="toggle-frame mode-change"><label class="toggle"><input type="checkbox" tabindex="0"><span></span></label></div>
+  <div class="toggle-frame"><label class="toggle mode-change"><input type="checkbox" tabindex="0"><span></span></label></div>
+  <div class="text">(モードONにして繋ぎたい2工程をクリック)</div>
+  <div class="bottom-line"></div>
   `;
   // CONFIG.$.container.innerHTML += `
   //   <div class="clickable-item mode-change">
@@ -97,7 +100,7 @@ async function LeftSideBarAdd(){
   
   // ボタンにクリック処理を追加
   miro.board.ui.initDraggableItemsContainer(CONFIG.$.container, {
-    draggableItemSelector: '.toggle-frame.mode-change',
+    draggableItemSelector: '.toggle.mode-change',
     onClick: () => {
       UTIL.Mode();
       miro.showNotification('物の流れ線描写モード: ' + CONFIG.mode.line_text[CONFIG.mode.line]);
