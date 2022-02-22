@@ -53,7 +53,7 @@ const UTIL = {
   },
   Mode: function(){
     CONFIG.mode.line = (CONFIG.mode.line +1) % 2;
-    UTIL.style.Mode_button(CONFIG.mode.line);
+    //UTIL.style.Mode_button(CONFIG.mode.line);
     
     return CONFIG.mode.line;
   }
@@ -82,22 +82,22 @@ miro.onReady(async function(){
 async function LeftSideBarAdd(){
   CONFIG.$.container.innerHTML += `
   <div class="subtitle">物の流れ線描写モード</div>
-  <div class="toggle-frame"><label class="toggle"><input type="checkbox" tabindex="0"><span></span></label></div>
+  <div class="toggle-frame mode-change"><label class="toggle"><input type="checkbox" tabindex="0"><span></span></label></div>
   `;
-  CONFIG.$.container.innerHTML += `
-    <div class="clickable-item mode-change">
-    <div class="item-frame">
-    <img src="img/mode_line.svg">
-    </div>
-    </div>
-    `;
+  // CONFIG.$.container.innerHTML += `
+  //   <div class="clickable-item mode-change">
+  //   <div class="item-frame">
+  //   <img src="img/mode_line.svg">
+  //   </div>
+  //   </div>
+  //   `;
   
   // ON/OFFで使うのでCONFIGに格納
   UTIL.set.$.Button();
   
   // ボタンにクリック処理を追加
   miro.board.ui.initDraggableItemsContainer(CONFIG.$.container, {
-    draggableItemSelector: '.clickable-item.mode-change',
+    draggableItemSelector: '.toggle-frame.mode-change',
     onClick: () => {
       UTIL.Mode();
       miro.showNotification('物の流れ線描写モード: ' + CONFIG.mode.line_text[CONFIG.mode.line]);
