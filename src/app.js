@@ -2,8 +2,10 @@ const selectedBtnFontSize = document.getElementById("selectedBtnFontSize");
 const selectedBtnWidth = document.getElementById("selectedBtnWidth");
 const selectedBtnFontLarger = document.getElementById("selectedBtnFontLarger");
 const selectedBtnFontSmaller = document.getElementById("selectedBtnFontSmaller");
+const selectedBtnWidthLarger = document.getElementById("selectedBtnWidthLarger");
+const selectedBtnWidthSmaller = document.getElementById("selectedBtnWidthSmaller");
 const fontSize = document.getElementById("fontSize");
-
+const width = document.getElementById("width");
 
 /**
  * 申し訳ありません。addEventListener lister [function] に async 必須です。
@@ -17,6 +19,8 @@ selectedBtnFontSize.addEventListener("click", selectionWidgetsFontUpdate);
 selectedBtnWidth.addEventListener("click", selectionWidgetsWidthUpdate);
 selectedBtnFontLarger.addEventListener("click", selectionWidgetsFontLargerUpdate);
 selectedBtnFontSmaller.addEventListener("click", selectionWidgetsFontSmallerUpdate);
+selectedBtnWidthLarger.addEventListener("click", selectionWidgetsWidthLargerUpdate);
+selectedBtnWidthSmaller.addEventListener("click", selectionWidgetsWidthSmallerUpdate);
 
 /*
  * 文字一括変更
@@ -83,8 +87,6 @@ async function selectionWidgetsFontLargerUpdate() {
   const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
   const fontSizeArray = [10, 12, 14, 18, 24, 36, 48, 64, 80, 144, 288];
 
-  //let updatedWidgetsData = []; // 更新したウィジェットのコンソール確認用データ
-
   // 選択しているウィジェットデータの有無確認
   if (selectionWidgets.length) {
 
@@ -145,8 +147,6 @@ async function selectionWidgetsFontSmallerUpdate() {
   const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
   const fontSizeArray = [288, 144, 80, 64, 48, 36, 24, 18, 14, 12, 10];
 
-  //let updatedWidgetsData = []; // 更新したウィジェットのコンソール確認用データ
-
   // 選択しているウィジェットデータの有無確認
   if (selectionWidgets.length) {
 
@@ -206,15 +206,13 @@ async function selectionWidgetsFontSmallerUpdate() {
 async function selectionWidgetsWidthUpdate() {
   const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
 
-  //let updatedWidgetsData = []; // 更新したウィジェットのコンソール確認用データ
-
   // 選択しているウィジェットデータの有無確認
   if (selectionWidgets.length) {
     /**
      * 一括更新:ウィジェットパラメータ
      */
     const updateWidgetParam = {
-      width: 64,
+      width: 140,
     };
 
     /**
@@ -248,7 +246,110 @@ async function selectionWidgetsWidthUpdate() {
     await Promise.all(
       selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
     );
-    miro.showNotification(`記号幅サイズを${updateWidgetParam.width}pxに一括変更しました。`);
+    miro.showNotification(`記号幅サイズを${updateWidgetParam.width.toFixed()}pxに一括変更しました。`);
+    width.value = updateWidgetParam.width.toFixed();
+  }
+}
+
+/*
+ * 幅を大きくする
+ */
+async function selectionWidgetsWidthLargerUpdate() {
+  const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
+
+  // 選択しているウィジェットデータの有無確認
+  if (selectionWidgets.length) {
+    /**
+     * 一括更新:ウィジェットパラメータ
+     */
+    const updateWidgetParam = {
+      width: selectionWidgets[0].width * 1.2,
+    };
+
+    /**
+     * 更新対象の処理
+     *
+     * @param object
+     */
+    async function selectionWidgetUpdate(widget) {
+      // 更新対象判定
+      if (
+        /**
+         * 更新する対象のシェイプやスタイルなど
+         */
+        widget.type === "SHAPE" &&
+        widget.style.shapeType === 3 && // 角丸長方形
+        widget.style.backgroundColor === "#d3d3d3" &&
+        /**
+         * 一括更新条件と更新する対象の条件が一致するウィジェットは処理しない
+         */
+        widget.width !== updateWidgetParam.width // 幅の比較
+      ) {
+          await miro.board.widgets.update({
+            id: widget.id, // 更新に必要なウィジェットID
+            text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
+            width: updateWidgetParam.width,
+          });
+      }
+    }
+
+    //更新処理
+    await Promise.all(
+      selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
+    );
+    miro.showNotification(`記号幅サイズを${updateWidgetParam.width.toFixed()}pxに一括変更しました。`);
+    width.value = updateWidgetParam.width.toFixed();
+  }
+}
+
+/*
+ * 幅を小さくする
+ */
+async function selectionWidgetsWidthSmallerUpdate() {
+  const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
+
+  // 選択しているウィジェットデータの有無確認
+  if (selectionWidgets.length) {
+    /**
+     * 一括更新:ウィジェットパラメータ
+     */
+    const updateWidgetParam = {
+      width: selectionWidgets[0].width * 0.8,
+    };
+
+    /**
+     * 更新対象の処理
+     *
+     * @param object
+     */
+    async function selectionWidgetUpdate(widget) {
+      // 更新対象判定
+      if (
+        /**
+         * 更新する対象のシェイプやスタイルなど
+         */
+        widget.type === "SHAPE" &&
+        widget.style.shapeType === 3 && // 角丸長方形
+        widget.style.backgroundColor === "#d3d3d3" &&
+        /**
+         * 一括更新条件と更新する対象の条件が一致するウィジェットは処理しない
+         */
+        widget.width !== updateWidgetParam.width // 幅の比較
+      ) {
+          await miro.board.widgets.update({
+            id: widget.id, // 更新に必要なウィジェットID
+            text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
+            width: updateWidgetParam.width,
+          });
+      }
+    }
+
+    //更新処理
+    await Promise.all(
+      selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
+    );
+    miro.showNotification(`記号幅サイズを${updateWidgetParam.width.toFixed()}pxに一括変更しました。`);
+    width.value = updateWidgetParam.width.toFixed();
   }
 }
 

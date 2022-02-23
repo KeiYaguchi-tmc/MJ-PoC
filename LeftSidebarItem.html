@@ -11,33 +11,30 @@
     <div id="container"></div></div>
 
     <div class="grid wrapper" style="padding-top: 20px;">
-      <div class="cs1 ce12" style="margin: 0 10px 15px;">
+      <div class="cs1 ce12" style="margin: 0 10px 10px;">
         <label class="label">文字サイズ</label>
-        <input class="input" type="number" name="fontSize" id="fontSize" style="width: 75px;">
-        <button type="button" class="button-small button-secondary" 
-        id="selectedBtnFontLarger" data-type="FontLarger">大きく</button>
-        <button type="button" class="button-small button-secondary" 
-        id="selectedBtnFontSmaller" data-type="FontSmaller">小さく</button>
+        <input class="input" type="text" name="fontSize" id="fontSize" style="width: 70px; margin: 10px 0 0" disabled>
+        <button type="button" class="button-small button-secondary" id="selectedBtnFontLarger" data-type="FontLarger" style="margin: 15px 0 0 5px;">大きく</button>
+        <button type="button" class="button-small button-secondary" id="selectedBtnFontSmaller" data-type="FontSmaller" style="margin: 15px 0 0;">小さく</button>
       </div>
-      <div class="cs1 ce12" style="margin: 0 0 24px 15px;">
-          <button type="button" class="button-small button-primary" 
-          id="selectedBtnFontSize" data-type="parallel">文字サイズ(64px)</button>
-      </div>
-      <div class="cs1 ce12" style="margin: 0 10px 15px;">
-        <label class="label">ウィジェットの幅</label>
-        <input class="input" type="number" name="width" id="width">
+      <div class="cs1 ce12" style="margin: 0 15px 0;">
+          <button type="button" class="button-small button-primary" id="selectedBtnFontSize" data-type="parallel">推奨値(64px)</button>
       </div>
 
-      <div class="cs1 ce12" style="margin: 0 10px 0;">
-        <button type="button" class="button-small button-primary" 
-        id="selectedBtnWidth" data-type="series">記号幅サイズ(64px)</button>
+      <div class="cs1 ce12" style="margin: 0 10px 10px;">
+        <label class="label">記号幅</label>
+        <input class="input" type="number" name="width" id="width" style="width: 80px; margin: 10px 0 0" disabled>
+        <button type="button" class="button-small button-secondary" id="selectedBtnWidthLarger" data-type="widthLarger" style="margin: 15px 0 0 5px;">大きく</button>
+        <button type="button" class="button-small button-secondary" id="selectedBtnWidthSmaller" data-type="widthSmaller" style="margin: 15px 0 0;">小さく</button>
+      </div>
+      <div class="cs1 ce12" style="margin: 0 15px 0;">
+        <button type="button" class="button-small button-primary" id="selectedBtnWidth" data-type="series">推奨値(140px)</button>
       </div>
     </div>
 
     <script src="https://miro.com/app/static/sdk.1.1.js"></script>
     <script src="src/LeftSidebarItem.js"></script>
     <script type="text/javascript" src="src/draw-line.js"></script>
-
     <script type="module" src="/src/app.js"></script>
   </body>
 </html>
