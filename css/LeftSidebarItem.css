@@ -2,7 +2,21 @@ html,
 body {
   height: 100%;
   margin: 0;
-  padding: 0;
+  padding-bottom: 0;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--indigo600);
+  border: 0 solid transparent;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+  background-color: initial;
 }
 
 .title {
@@ -20,38 +34,45 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
-  padding: 14px;
+  /* padding: 14px; */
   box-sizing: border-box;
   touch-action: pan-y;
 }
 
 .item-frame{
-  width: 80px;
+  /* width: 80px; */
+  width: 100%;
   height: 50px;
   text-align: center;
 }
 
 .item-frame img {
-  max-width: 40px;
-  max-height: 40PX;
+  /* max-width: 40px;
+  max-height: 40PX; */
+  width: 80%;
+  height: 80%;
   cursor: pointer;
   background-color: #F5F5F7;
-  margin-top: 5px;
+  padding: 5%;
   font-size: 1px;
 }
 
 .item-text {
-  width: 80px;
+  width: 100%;
   height: 20px;
   font-size: 1px;
   text-align: center;
   color: rgba(0, 0, 0, 0.8);
   font-weight: bold;
+  word-wrap:break-all;
+  transform:scale(0.8);
 }
 
 .draggable-item {
-  margin:4px;
-  width: 70px;
+  /* margin:4px; */
+  margin: 2%;
+  /* width: 70px; */
+  width: 21%;
   height: 70px;
   display: flex;
   justify-content: center;
@@ -191,7 +212,28 @@ body {
 
 .font1 {
   font-size: 12px;
+  font-weight: bold;
   color: rgba(0, 0, 0, 0.8);
   line-height: 1;
   padding-left: 20px;
+}
+
+.top-line {
+  border-bottom: 1px solid rgb(225, 224, 231);
+  /* width: 90%; */
+  /* padding: 5%; */
+  /* margin-top: 20px; */
+  height: 1px;
+  margin: 5px;
+}
+
+.button-small.button-primary.btn-style {
+  width: 100px;
+  font-size: 8px;
+}
+
+.fontChangelabel{
+  height: 20px;
+  width: 70px;
+  margin: 10px 0 0
 }

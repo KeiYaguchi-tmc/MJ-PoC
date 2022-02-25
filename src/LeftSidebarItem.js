@@ -236,12 +236,12 @@ function lineWidgetCreate(target) {
 function bootstrap() {
   const container = document.getElementById('container')
 
-  //小見出しの作成
-  container.innerHTML += `<div class='subheading1'>
-                          <p class='font1' align='left'>記号
-                          <br>(ドラッグ&ドロップで使用)</br>
-                          </p>
-                          </div>`
+  // //小見出しの作成
+  // container.innerHTML += `<div class='subheading1'>
+  //                         <p class='font1' align='left'>記号
+  //                         <br>(ドラッグ&ドロップで使用)</br>
+  //                         </p>
+  //                         </div>`
 
   addShapes(container)
   addLines(container)
