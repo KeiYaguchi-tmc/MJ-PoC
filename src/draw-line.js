@@ -80,13 +80,13 @@ miro.onReady(async function(){
 /* function LeftSideBarAdd */
 // 左メニューにボタン追加
 async function LeftSideBarAdd(){
-  CONFIG.$.container.innerHTML += `
-  <div class="top-line"></div>
-  <div class="subtitle">物の流れ線描写モード</div>
-  <div class="toggle-frame"><label class="toggle mode-change"><input type="checkbox" tabindex="0"><span></span></label></div>
-  <div class="text">(モードONにして繋ぎたい2工程をクリック)</div>
-  <div class="bottom-line"></div>
-  `;
+  CONFIG.$.container =document.getElementById('toggle-frame')
+  // CONFIG.$.container.innerHTML += `
+  // <div class="subtitle">物の流れ線描写モード</div>
+  // <div class="toggle-frame"><label class="toggle mode-change"><input type="checkbox" tabindex="0"><span></span></label></div>
+  // <div class="text">(モードONにして繋ぎたい2工程をクリック)</div>
+  // <div class="bottom-line"></div>
+  // `;
   // CONFIG.$.container.innerHTML += `
   //   <div class="clickable-item mode-change">
   //   <div class="item-frame">
