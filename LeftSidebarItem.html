@@ -1,40 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>デジタル物情アプリ</title>
-    <link href="css/LeftSidebarItem.css" rel="stylesheet" type="text/css" media="all">
-    <link href="css/draw-line.css" rel="stylesheet" type="text/css" media="all">
-    <link rel="stylesheet" href="https://unpkg.com/mirotone/dist/styles.css">
-  </head>
-  <body>
-    <div class="title">デジタル物情アプリ</div>
-    <div id="container"></div></div>
 
-    <div class="grid wrapper" style="padding-top: 10px;">
-      <div class="cs1 ce12" style="margin: 0 10px 0;">
-        <label class="label">文字サイズ</label>
-        <input class="input" type="text" name="fontSize" id="fontSize" style="width: 70px; margin: 10px 0 0" disabled>
-        <button type="button" class="button-small button-secondary" id="selectedBtnFontLarger" data-type="FontLarger" style="margin: 15px 0 0 5px;">大きく</button>
-        <button type="button" class="button-small button-secondary" id="selectedBtnFontSmaller" data-type="FontSmaller" style="margin: 15px 0 0;">小さく</button>
-      </div>
-      <div class="cs1 ce12" style="margin: 0 15px 0;">
-          <button type="button" class="button-small button-primary" id="selectedBtnFontSize" data-type="parallel">推奨値(64px)</button>
-      </div>
+<head>
+  <title>デジタル物情アプリ</title>
+  <link href="css/LeftSidebarItem.css" rel="stylesheet" type="text/css" media="all">
+  <link href="css/draw-line.css" rel="stylesheet" type="text/css" media="all">
+  <link rel="stylesheet" href="https://unpkg.com/mirotone/dist/styles.css">
+</head>
 
-      <div class="cs1 ce12" style="margin: 0 10px 0 32px;">
-        <label class="label">記号幅</label>
-        <input class="input" type="text" name="width" id="width" style="width: 70px; margin: 10px 0 0" disabled>
-        <button type="button" class="button-small button-secondary" id="selectedBtnWidthLarger" data-type="widthLarger" style="margin: 15px 0 0 5px;">大きく</button>
-        <button type="button" class="button-small button-secondary" id="selectedBtnWidthSmaller" data-type="widthSmaller" style="margin: 15px 0 0;">小さく</button>
-      </div>
-      <div class="cs1 ce12" style="margin: 0 15px 0;">
-        <button type="button" class="button-small button-primary" id="selectedBtnWidth" data-type="series">推奨値(140px)</button>
+<body>
+  <div class="title">デジタル物情アプリ</div>
+  <div class="grid">
+    <!-- App: Drag-and-Drop -->
+    <div class="cs1 ce12">
+      <div class="top-line"></div>
+      <p class='font1' align='left'>
+        記号
+        <br>(ドラッグ&ドロップで使用)</br>
+      </p>
+    </div>
+    <div class="cs1 ce12">
+      <div id="container"></div>
+    </div>
+
+    <!-- App: 物の流れ線描写モード -->
+    <div class="cs1 ce12">
+      <div class="top-line"></div>
+    </div>
+    <div class="cs1 ce10">
+      <p class='font1' align='left'>
+        物の流れ線描写モード
+        <br>(モードON後繋ぎたい工程間をクリック)</br>
+      </p>
+    </div>
+    <div class="cs11 ce12">
+      <div id="toggle-frame"><label class="toggle mode-change"><input type="checkbox" tabindex="0"><span></span></label>
       </div>
     </div>
 
-    <script src="https://miro.com/app/static/sdk.1.1.js"></script>
-    <script src="src/LeftSidebarItem.js"></script>
-    <script type="text/javascript" src="src/draw-line.js"></script>
-    <script type="module" src="/src/app.js"></script>
-  </body>
+    <!-- App: サイズ一括変更 -->
+    <div class="cs1 ce12">
+      <div class="top-line"></div>
+      <p class='font1' align='left'>
+        文字サイズ、記号幅一括変更
+      </p>
+    </div>
+    <div class="cs1 ce12">
+      <label class="label">
+        <p class='font1' align='left'>文字サイズ：</p>
+      </label>
+    </div>
+    <div class="cs2 ce5">
+      <button type="button" class="button-small button-primary btn-style" id="selectedBtnFontSize" data-type="parallel">推奨値(64px)</button>
+    </div>
+    <div class="cs6 ce7">
+      <button type="button" class="button-small button-secondary" data-type="FontLarger">機能</button>
+      <!-- <button type="button" class="button-small button-secondary" id="selectedBtnFontLarger" data-type="FontLarger">△</button> -->
+    </div>
+    <div class="cs9 ce10">
+      <button type="button" class="button-small button-secondary" data-type="FontSmaller">実装中</button>
+      <!-- <button type="button" class="button-small button-secondary" id="selectedBtnFontSmaller" data-type="FontSmaller">▽</button> -->
+    </div>
+
+    <div class="cs1 ce12">
+      <label class="label">
+        <p class='font1' align='left'>記号幅：</p>
+      </label>
+    </div>
+    <div class="cs2 ce5">
+      <button type="button" class="button-small button-primary btn-style" id="selectedBtnWidth" data-type="series">推奨値(140px)</button>
+    </div>
+    <div class="cs6 ce7">
+      <button type="button" class="button-small button-secondary" id="selectedBtnWidthLarger" data-type="widthLarger">機能</button>
+      <!-- <button type="button" class="button-small button-secondary" id="selectedBtnWidthLarger" data-type="widthLarger">△</button> -->
+    </div>
+    <div class="cs9 ce10">
+      <button type="button" class="button-small button-secondary" data-type="widthSmaller">実装中</button>
+      <!-- <button type="button" class="button-small button-secondary" id="selectedBtnWidthSmaller" data-type="widthSmaller">▽</button> -->
+    </div>
+    <div class="cs1 ce12"></div>
+
+  </div>
+
+  <!-- <div class="grid wrapper" style="padding-top: 10px;">
+    <div class="cs1 ce12">
+      <label class="label">文字サイズ：</label>
+    </div>
+    <div class="cs2 ce5">
+      <input class="fontChangelabel" name="fontSize" maxlength=10 disabled>
+      <label>px</label>
+    </div>
+    <div class="cs8 ce11">
+      <button type="button" class="button-secondary btn-style" id="selectedBtnFontLarger"
+        data-type="FontLarger">△</button>
+      <button type="button" class="button-secondary btn-style" id="selectedBtnFontSmaller"
+        data-type="FontSmaller">▽</button>
+    </div>
+
+    <div class="cs1 ce12" style="margin: 0 15px 0;">
+      <button type="button" class="button-small button-primary" id="selectedBtnFontSize"
+        data-type="parallel">推奨値(64px)</button>
+    </div>
+
+    <div class="cs1 ce12" style="margin: 0 10px 0 32px;">
+      <label class="label">記号幅</label>
+      <input id="widthChangelabel" type="text" name="width" id="width" style="width: 70px; margin: 10px 0 0" disabled>
+      <button type="button" class="button-small button-secondary" id="selectedBtnWidthLarger" data-type="widthLarger"
+        style="margin: 15px 0 0 5px;">大きく</button>
+      <button type="button" class="button-small button-secondary" id="selectedBtnWidthSmaller" data-type="widthSmaller"
+        style="margin: 15px 0 0;">小さく</button>
+    </div>
+    <div class="cs1 ce12" style="margin: 0 15px 0;">
+      <button type="button" class="button-small button-primary" id="selectedBtnWidth"
+        data-type="series">推奨値(140px)</button>
+    </div>
+  </div> -->
+
+  <script src="https://miro.com/app/static/sdk.1.1.js"></script>
+  <script src="src/LeftSidebarItem.js"></script>
+  <script type="text/javascript" src="src/draw-line.js"></script>
+  <script type="module" src="/src/app.js"></script>
+</body>
+
 </html>
