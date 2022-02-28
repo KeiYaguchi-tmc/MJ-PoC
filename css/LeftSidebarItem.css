@@ -22,8 +22,9 @@ body {
 .title {
   font-size: 20px;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.8);
-  padding: 24px 0 0 16px;
+  color: rgba(0, 0, 0, 1);
+  margin: 18px 0 14px 0;
+  padding-left: 16px;
 }
 
 #container {
@@ -62,7 +63,7 @@ body {
   height: 20px;
   font-size: 1px;
   text-align: center;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 1);
   font-weight: bold;
   word-wrap:break-all;
   transform:scale(0.8);
@@ -134,26 +135,6 @@ body {
     margin-top: 10px;
 }
 
-/* .obj-flow {
-  border-bottom: 3px solid #000;
-  width: 40px;
-  margin-left: 16px;
-  padding-top: 30px;
-  position:  relative;
-}
-
-.obj-flow::after {
-  content:  '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 7px 0 7px 12px;
-  border-color: transparent transparent transparent #000000;
-  position:  absolute;
-  top: 24px;
-  left: 100%;
-} */
-
 .info-flow {
   border-bottom: 2px dashed #000;
   width: 40px;
@@ -174,48 +155,27 @@ body {
   right: 100%;
 }
 
-/* .lead-time {
-  border-bottom: 3px solid #000;
-  width: 40px;
-  margin: auto;
-  padding-top: 30px;
-  position:  relative;
-}
-
-.lead-time::before {
-  content:  '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 7px 0 7px 12px;
-  border-color: transparent transparent transparent #000000;
-  position:  absolute;
-  top: 24px;
-  left: 100%;
-}
-
-.lead-time::after {
-  content:  '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 7px 12px 7px 0;
-  border-color: transparent #000000 transparent transparent;
-  position:  absolute;
-  top: 24px;
-  right: 100%;
-} */
-
 .subheading1 {
   width: 100%;
 }
 
 .font1 {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.8);
-  line-height: 1;
-  padding-left: 20px;
+  color: rgba(0, 0, 0, 1);
+  line-height: 1.2;
+  padding-left: 24px;
+  margin: 5px 0;
+  display: block;
+}
+
+.font2 {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 1);
+  padding-left: 24px;
+  line-height: 1.2;
+  margin: 0px;
+  display: block;
 }
 
 .top-line {
