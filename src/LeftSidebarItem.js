@@ -139,7 +139,6 @@ function createShape(canvasX, canvasY, shapewidget) {
       borderColor: '#000',
       fontFamily: 0,
       fontSize: 64,
-      textColor: '#000',
       shapeType: shapewidget.type,
     },
   })
