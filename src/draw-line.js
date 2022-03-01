@@ -18,7 +18,6 @@ const CONFIG = {
     widgets: []
   },
   color: {
-    highlight: '#4262ff',
     black: '#000'
   }
 };
@@ -46,14 +45,8 @@ const UTIL = {
       console.groupEnd();
     }
   },
-  style: {
-    Mode_button: function(_mode){
-      CONFIG.$.button.style.border = (_mode * 7) + 'px solid ' + CONFIG.color.highlight;
-    }
-  },
   Mode: function(){
     CONFIG.mode.line = (CONFIG.mode.line +1) % 2;
-    //UTIL.style.Mode_button(CONFIG.mode.line);
     
     return CONFIG.mode.line;
   }
@@ -81,19 +74,6 @@ miro.onReady(async function(){
 // 左メニューにボタン追加
 async function LeftSideBarAdd(){
   CONFIG.$.container =document.getElementById('toggle-frame')
-  // CONFIG.$.container.innerHTML += `
-  // <div class="subtitle">物の流れ線描写モード</div>
-  // <div class="toggle-frame"><label class="toggle mode-change"><input type="checkbox" tabindex="0"><span></span></label></div>
-  // <div class="text">(モードONにして繋ぎたい2工程をクリック)</div>
-  // <div class="bottom-line"></div>
-  // `;
-  // CONFIG.$.container.innerHTML += `
-  //   <div class="clickable-item mode-change">
-  //   <div class="item-frame">
-  //   <img src="img/mode_line.svg">
-  //   </div>
-  //   </div>
-  //   `;
   
   // ON/OFFで使うのでCONFIGに格納
   UTIL.set.$.Button();

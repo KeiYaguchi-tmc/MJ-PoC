@@ -1,467 +1,184 @@
-const selectedBtnFontSize = document.getElementById("selectedBtnFontSize");
-const selectedBtnWidth = document.getElementById("selectedBtnWidth");
-const selectedBtnFontLarger = document.getElementById("selectedBtnFontLarger");
-const selectedBtnFontSmaller = document.getElementById("selectedBtnFontSmaller");
-const selectedBtnWidthLarger = document.getElementById("selectedBtnWidthLarger");
-const selectedBtnWidthSmaller = document.getElementById("selectedBtnWidthSmaller");
-const fontSize = document.getElementById("fontSize");
-const width = document.getElementById("width");
+/* CONFIG */
+// 状態や設定値の格納
+const CONFIG = {
+  Init: function(_sizechange){
+    CONFIG.$.sizechange = _sizechange; 
+  },
+  $: {
+    sizechange: {}
+  },
+  // 一括更新:ウィジェットパラメータ
+  style: {
+    width: {
+      change: 0.2,
+      default: 140
+    },
+    fontSize: {
+      default: 7,
+      list: [10,12,14,18,24,36,48,64,80,144,288,999]
+    }
+  }
+};
 
-/**
- * 申し訳ありません。addEventListener lister [function] に async 必須です。
- * 失念してましたが無いと miro.board.selection.get() が動作しません。
- * ! Uncaught Syntax Error: Unexpected reserved word になります。
- *
- * 並列処理と直列処理を別々のボタンにして、それぞれ EventLinstener 登録しています。
- * それぞれのボタンの処理先functionは同一で、最後の更新処理が並列か直列です。（押したボタンによる分岐）
- */
-selectedBtnFontSize.addEventListener("click", selectionWidgetsFontUpdate);
-selectedBtnWidth.addEventListener("click", selectionWidgetsWidthUpdate);
-selectedBtnFontLarger.addEventListener("click", selectionWidgetsFontLargerUpdate);
-selectedBtnFontSmaller.addEventListener("click", selectionWidgetsFontSmallerUpdate);
-selectedBtnWidthLarger.addEventListener("click", selectionWidgetsWidthLargerUpdate);
-selectedBtnWidthSmaller.addEventListener("click", selectionWidgetsWidthSmallerUpdate);
-
-/*
- * 文字一括変更
- */
-async function selectionWidgetsFontUpdate() {
-  const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
-
-  //let updatedWidgetsData = []; // 更新したウィジェットのコンソール確認用データ
-
-  // 選択しているウィジェットデータの有無確認
-  if (selectionWidgets.length) {
-    /**
-     * 一括更新:ウィジェットパラメータ
-     */
-    /**********************************/
-    const updateWidgetParam = {
-      style: {
-        // defaultで64px
-        fontSize: 64,
-      },
-    };
-
-    /**
-     * 更新対象の処理
-     *
-     * @param object
-     * @return mixed (更新対象の場合) object / (更新対象でない場合) false : コンソール確認用
-     */
-    async function selectionWidgetUpdate(widget) {
-      // 更新対象判定
-      if (
-        /**
-         * 更新する対象のシェイプやスタイルなど
-         */
-        widget.type === "SHAPE" &&
-        widget.style.shapeType === 3 && // 角丸長方形
-        widget.style.backgroundColor === "#d3d3d3" &&
-        /**
-         * 一括更新条件と更新する対象の条件が一致するウィジェットは処理しない
-         */
-        widget.style.fontSize !== updateWidgetParam.style.fontSize // フォントサイズの比較
-      ) {
-          await miro.board.widgets.update({
-            id: widget.id, // 更新に必要なウィジェットID
-            text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
-            style: updateWidgetParam.style,
-          });
+/* UTIL */
+// 共通処理（ユーティリティ）の格納
+const UTIL = {
+  get: {
+    Id: async function(_id){
+      const result = await miro.board.widgets.get({id:_id});
+      return result;
+    },
+    FontSize: function fontsize(_num,_change){
+      const arr = CONFIG.style.fontSize.list;
+      const indexof = arr.indexOf(_num);
+      
+      if(indexof > 0) { 
+        return Math.min(Math.max(
+          indexof + _change
+        , 0), 10); 
+      } else {
+        return Math.min(Math.max(
+          arr.findIndex(function(_value){
+            return (_num < _value);
+          }) - 1 + _change
+        , 0), 10);
+        
       }
     }
-
-    //更新処理
-    await Promise.all(
-      selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
-    );
-    miro.showNotification(`文字サイズを${updateWidgetParam.style.fontSize}pxに一括変更しました。`);
-    fontSize.value = updateWidgetParam.style.fontSize;
+  },
+  // 更新する対象のシェイプやスタイル判定
+  check: {
+    Obj: function(_target){
+      return (
+        _target.style.shapeType === 3 &&
+        _target.style.backgroundColor === "#d3d3d3"
+        );
+    }
   }
-}
+};
 
-/*
- * 文字を大きくする
- */
-async function selectionWidgetsFontLargerUpdate() {
-  const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
-  const fontSizeArray = [10, 12, 14, 18, 24, 36, 48, 64, 80, 144, 288];
-
-  // 選択しているウィジェットデータの有無確認
-  if (selectionWidgets.length) {
-
-    /**
-     * 一括更新:ウィジェットパラメータ
-     */
-    /**********************************/
-    const updateWidgetParam = {
-      style: {
-        // 最大文字サイズ：288px
-        fontSize:  fontSizeArray.find(x => x > selectionWidgets[0].style.fontSize) < 288
-                 ? fontSizeArray.find(x => x > selectionWidgets[0].style.fontSize)
-                 : 288,
-      },
-    };
-
-    /**
-     * 更新対象の処理
-     *
-     * @param object
-     * @return mixed (更新対象の場合) object / (更新対象でない場合) false : コンソール確認用
-     */
-    async function selectionWidgetUpdate(widget) {
-      // 更新対象判定
-      if (
-        /**
-         * 更新する対象のシェイプやスタイルなど
-         */
-        widget.type === "SHAPE" &&
-        widget.style.shapeType === 3 && // 角丸長方形
-        widget.style.backgroundColor === "#d3d3d3" &&
-        /**
-         * 一括更新条件と更新する対象の条件が一致するウィジェットは処理しない
-         */
-        widget.style.fontSize !== updateWidgetParam.style.fontSize // フォントサイズの比較
-      ) {
-          await miro.board.widgets.update({
+/* UPDATE */
+// 変更処理の格納
+const UPDATE = {
+  width: {
+    Recommend: function(){
+      miro.showNotification('記号幅: width / Recommend');
+      UPDATE.Styles('width');
+    },
+    Up: function(){
+      miro.showNotification('記号幅: width / Up');
+      UPDATE.Styles('width',1);
+    },
+    Down: function(){
+      miro.showNotification('記号幅: width / Down');
+      UPDATE.Styles('width',-1);
+    },
+  },
+  font: {
+    Recommend: function(){
+      // miro.showNotification('文字サイズ: fontSize / Recommend');
+      UPDATE.Styles('fontSize');
+    },
+    Up: function(){
+      miro.showNotification('文字サイズ: fontSize / Up');
+      UPDATE.Styles('fontSize',1);
+    },
+    Down: function(){
+      miro.showNotification('文字サイズ: fontSize / Down');
+      UPDATE.Styles('fontSize',-1);
+    },
+  },
+  Styles: async function(type,_change){
+    
+    const change = _change || false;
+    
+    const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
+    let updatedWidgetsData = []; // 更新したウィジェットのコンソール確認用データ
+    
+    // 選択しているウィジェットデータの有無確認
+    if(!selectionWidgets.length){
+      return false;
+    }
+    
+    // console.time(type,change);
+    
+    //更新処理
+    updatedWidgetsData = await Promise.all(
+      selectionWidgets.map(async function(widget){
+        let updatedWidget = [false];
+        // 更新対象判定
+        if(UTIL.check.Obj(widget)){
+          
+          const updateStyles = {};
+          
+          // 一括更新条件(推奨値)と更新する対象の条件が一致するウィジェットは処理しない
+          const flgWidth =    change? true: widget.width !== CONFIG.style.width.default;
+          const flgFontSize = change? true: widget.style.fontSize !== CONFIG.style.fontSize.list[CONFIG.style.fontSize.default];
+          
+          // 更新値決定
+          switch(type){
+            case 'fontSize':
+              if(!flgFontSize){return false} 
+              updateStyles.style = Object.assign(widget.style,{fontSize:CONFIG.style.fontSize.list[(
+                change
+                ? UTIL.get.FontSize(widget.style.fontSize, change)
+                : CONFIG.style.fontSize.default  // 推奨値
+              )]})
+              break;
+            case 'width':
+              if(!flgWidth){return false}
+              updateStyles.width = change
+                ? widget.width + (widget.width * CONFIG.style.width.change * change)
+                : CONFIG.style.width.default  // 推奨値
+                ;
+              break;
+            }
+          
+          // 更新
+          updatedWidget = await miro.board.widgets.update({
             id: widget.id, // 更新に必要なウィジェットID
             text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
-            style: updateWidgetParam.style,
+            style: updateStyles.style,
+            width: updateStyles.width
           });
-      }
-    }
-
-    //更新処理
-    await Promise.all(
-      selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
+        }
+        return updatedWidget[0];
+      })
     );
-    miro.showNotification(`文字サイズを${updateWidgetParam.style.fontSize}pxに一括変更しました。`);
-    fontSize.value = updateWidgetParam.style.fontSize;
+    // console.timeEnd(type,change); // 更新処理時間計測 : end
+    
+    // 更新したウィジェットのコンソール確認：更新していないウィジェットは削除（集計に含めない）
+    // console.log("更新したウィジェット", updatedWidgetsData.filter(Boolean));
   }
+};
+
+/* miro.onReady */
+// メイン処理開始
+miro.onReady(async function(){
+  
+  // console.log(await miro.board.info.get());
+  
+  // // CONFIGを初期化
+  const sizechange = document.getElementById('size-change')
+  CONFIG.Init(sizechange);
+  
+  // 一括変更処理
+  selectionWidgetsUpdate();
+  
+});
+
+async function selectionWidgetsUpdate() {
+  const type1 = ['width','font'], type2 = ['Recommend','Up','Down'];
+
+  type1.map((T1)=>{
+    type2.map((T2)=>{
+      // ボタンにクリック処理を追加
+      miro.board.ui.initDraggableItemsContainer(CONFIG.$.sizechange, {
+        draggableItemSelector: `.button-small.${T1}.${T2.toLowerCase()}`,
+        onClick: () => {
+          UPDATE[T1][T2]();
+        }
+      })
+    });
+  });
 }
-
-/*
- * 文字を小さくする
- */
-async function selectionWidgetsFontSmallerUpdate() {
-  const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
-  const fontSizeArray = [288, 144, 80, 64, 48, 36, 24, 18, 14, 12, 10];
-
-  // 選択しているウィジェットデータの有無確認
-  if (selectionWidgets.length) {
-
-    /**
-     * 一括更新:ウィジェットパラメータ
-     */
-    /**********************************/
-    const updateWidgetParam = {
-      style: {
-        // 最小文字サイズ：10px
-        fontSize:  fontSizeArray.find(x => x < selectionWidgets[0].style.fontSize) > 10
-                 ? fontSizeArray.find(x => x < selectionWidgets[0].style.fontSize)
-                 : 10,
-      },
-    };
-
-    /**
-     * 更新対象の処理
-     *
-     * @param object
-     * @return mixed (更新対象の場合) object / (更新対象でない場合) false : コンソール確認用
-     */
-    async function selectionWidgetUpdate(widget) {
-      // 更新対象判定
-      if (
-        /**
-         * 更新する対象のシェイプやスタイルなど
-         */
-        widget.type === "SHAPE" &&
-        widget.style.shapeType === 3 && // 角丸長方形
-        widget.style.backgroundColor === "#d3d3d3" &&
-        /**
-         * 一括更新条件と更新する対象の条件が一致するウィジェットは処理しない
-         */
-        widget.style.fontSize !== updateWidgetParam.style.fontSize // フォントサイズの比較
-      ) {
-          await miro.board.widgets.update({
-            id: widget.id, // 更新に必要なウィジェットID
-            text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
-            style: updateWidgetParam.style,
-          });
-      }
-    }
-
-    //更新処理
-    await Promise.all(
-      selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
-    );
-    miro.showNotification(`文字サイズを${updateWidgetParam.style.fontSize}pxに一括変更しました。`);
-    fontSize.value = updateWidgetParam.style.fontSize;
-  }
-}
-
-/*
- * 幅一括変更
- */
-async function selectionWidgetsWidthUpdate() {
-  const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
-
-  // 選択しているウィジェットデータの有無確認
-  if (selectionWidgets.length) {
-    /**
-     * 一括更新:ウィジェットパラメータ
-     */
-    const updateWidgetParam = {
-      width: 140,
-    };
-
-    /**
-     * 更新対象の処理
-     *
-     * @param object
-     */
-    async function selectionWidgetUpdate(widget) {
-      // 更新対象判定
-      if (
-        /**
-         * 更新する対象のシェイプやスタイルなど
-         */
-        widget.type === "SHAPE" &&
-        widget.style.shapeType === 3 && // 角丸長方形
-        widget.style.backgroundColor === "#d3d3d3" &&
-        /**
-         * 一括更新条件と更新する対象の条件が一致するウィジェットは処理しない
-         */
-        widget.width !== updateWidgetParam.width // 幅の比較
-      ) {
-          await miro.board.widgets.update({
-            id: widget.id, // 更新に必要なウィジェットID
-            text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
-            width: updateWidgetParam.width,
-          });
-      }
-    }
-
-    //更新処理
-    await Promise.all(
-      selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
-    );
-    miro.showNotification(`記号幅サイズを${updateWidgetParam.width.toFixed()}pxに一括変更しました。`);
-    width.value = updateWidgetParam.width.toFixed();
-  }
-}
-
-/*
- * 幅を大きくする
- */
-async function selectionWidgetsWidthLargerUpdate() {
-  const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
-
-  // 選択しているウィジェットデータの有無確認
-  if (selectionWidgets.length) {
-    /**
-     * 一括更新:ウィジェットパラメータ
-     */
-    const updateWidgetParam = {
-      width: selectionWidgets[0].width * 1.2,
-    };
-
-    /**
-     * 更新対象の処理
-     *
-     * @param object
-     */
-    async function selectionWidgetUpdate(widget) {
-      // 更新対象判定
-      if (
-        /**
-         * 更新する対象のシェイプやスタイルなど
-         */
-        widget.type === "SHAPE" &&
-        widget.style.shapeType === 3 && // 角丸長方形
-        widget.style.backgroundColor === "#d3d3d3" &&
-        /**
-         * 一括更新条件と更新する対象の条件が一致するウィジェットは処理しない
-         */
-        widget.width !== updateWidgetParam.width // 幅の比較
-      ) {
-          await miro.board.widgets.update({
-            id: widget.id, // 更新に必要なウィジェットID
-            text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
-            width: updateWidgetParam.width,
-          });
-      }
-    }
-
-    //更新処理
-    await Promise.all(
-      selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
-    );
-    miro.showNotification(`記号幅サイズを${updateWidgetParam.width.toFixed()}pxに一括変更しました。`);
-    width.value = updateWidgetParam.width.toFixed();
-  }
-}
-
-/*
- * 幅を小さくする
- */
-async function selectionWidgetsWidthSmallerUpdate() {
-  const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
-
-  // 選択しているウィジェットデータの有無確認
-  if (selectionWidgets.length) {
-    /**
-     * 一括更新:ウィジェットパラメータ
-     */
-    const updateWidgetParam = {
-      width: selectionWidgets[0].width * 0.8,
-    };
-
-    /**
-     * 更新対象の処理
-     *
-     * @param object
-     */
-    async function selectionWidgetUpdate(widget) {
-      // 更新対象判定
-      if (
-        /**
-         * 更新する対象のシェイプやスタイルなど
-         */
-        widget.type === "SHAPE" &&
-        widget.style.shapeType === 3 && // 角丸長方形
-        widget.style.backgroundColor === "#d3d3d3" &&
-        /**
-         * 一括更新条件と更新する対象の条件が一致するウィジェットは処理しない
-         */
-        widget.width !== updateWidgetParam.width // 幅の比較
-      ) {
-          await miro.board.widgets.update({
-            id: widget.id, // 更新に必要なウィジェットID
-            text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
-            width: updateWidgetParam.width,
-          });
-      }
-    }
-
-    //更新処理
-    await Promise.all(
-      selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
-    );
-    miro.showNotification(`記号幅サイズを${updateWidgetParam.width.toFixed()}pxに一括変更しました。`);
-    width.value = updateWidgetParam.width.toFixed();
-  }
-}
-
-
-// /*
-//  * async 必須
-//  */
-// async function selectionWidgetsWidthUpdate() {
-//   const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
-
-//   //let updatedWidgetsData = []; // 更新したウィジェットのコンソール確認用データ
-
-//   // 選択しているウィジェットデータの有無確認
-//   if (selectionWidgets.length) {
-//     //console.log("選択しているウィジェット", selectionWidgets); // 選択しているウィジェットデータ > コンソール
-
-//     /**
-//      * 一括更新:ウィジェットパラメータ
-//      *
-//      * @var object
-//      */
-//     const updateWidgetParam = {
-//       // style: {
-//       //   // inputから、未入力は32 デバッグ用
-//       //   fontSize: document.getElementById("fontSize").value
-//       //     ? Number(document.getElementById("fontSize").value)
-//       //     : 32,
-//       // },
-//       style: {
-//         // defaultは64px
-//         fontSize: 64,
-//       },
-
-//       // // inputから、未入力は64 デバッグ用
-//       // width: document.getElementById("width").value
-//       //   ? Number(document.getElementById("width").value)
-//       //   : 64,
-
-//       //defaultで64px
-//       width: 64,
-//     };
-
-//     /**
-//      * 更新対象の処理
-//      *
-//      * @param object
-//      * @return mixed (更新対象の場合) object / (更新対象でない場合) false : コンソール確認用
-//      */
-//     async function selectionWidgetUpdate(widget) {
-//       let updatedWidget = [false];
-
-//       // 更新対象判定
-//       if (
-//         /**
-//          * 更新する対象のシェイプやスタイルなど
-//          */
-//         widget.type === "SHAPE" &&
-//         widget.style.shapeType === 3 && // 角丸長方形
-//         //widget.style.backgroundColor === "#e6e6e6" &&
-//         /**
-//          * 一括更新条件と更新する対象の条件が一致するウィジェットは
-//          * 速度的に処理をしない方が良いと思われます。
-//          */
-//         (widget.style.fontSize !== updateWidgetParam.style.fontSize || // フォントサイズの比較
-//           widget.width !== updateWidgetParam.width) // 幅の比較
-//       ) {
-//         updatedWidget = await miro.board.widgets.update({
-//           id: widget.id, // 更新に必要なウィジェットID
-//           text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
-//           style: updateWidgetParam.style,
-//           width: updateWidgetParam.width,
-//         });
-//       }
-
-//       //return updatedWidget[0];
-//     }
-
-//     /**
-//      * 更新処理
-//      */
-//     const updateMethodType = this.dataset.type;
-//     //console.time(updateMethodType); // 更新処理時間計測 : start
-//     switch (updateMethodType) {
-//       case "parallel":
-//         /**
-//          * * 並列処理 / Promise.all() : 高速化・比較実用的の方
-//          * * 処理するウィジェット数が多いと 「Syncing... Please wait.」が表示され
-//          * * 処理中にミロボード（画面）がロックされますが、更新処理は圧倒的にこちらの方が早いです。
-//          */
-//         //updatedWidgetsData = 
-//         await Promise.all(
-//           selectionWidgets.map((widget) => selectionWidgetUpdate(widget))
-//         );
-
-//         break;
-
-//       default:
-//         // case "series": 用
-//         /**
-//          * ! 直列処理 / for...of : 解説した方
-//          * ! 処理中にミロボードが画面ロックせず、その間にボード上で作業ができるようですが
-//          * ! 並列処理に比べて8〜10倍、処理に時間が必要です。
-//          */
-//         for (const widget of selectionWidgets) {
-//           updatedWidgetsData.push(await selectionWidgetUpdate(widget));
-//         }
-
-//         break;
-//     }
-//     //console.timeEnd(updateMethodType); // 更新処理時間計測 : end
-//   }
-
-//   // 更新したウィジェットのコンソール確認：更新していないウィジェットは削除（集計に含めない）
-//   //console.log("更新したウィジェット", updatedWidgetsData.filter(Boolean));
-// }
