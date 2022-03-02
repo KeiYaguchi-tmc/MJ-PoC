@@ -46,7 +46,6 @@
         選択した範囲内の工程を一括編集します。<br>
         ※他のオブジェクトを選択していても問題ありません
       </p>
-      
     </div>
     <div class="cs1 ce12">
       <label class="label">
@@ -83,12 +82,30 @@
     </div>
     <div class="cs1 ce12"></div>
 
+    <!-- App: 工程のみ選択 -->
+    <div class="cs1 ce12">
+      <div class="top-line"></div>
+    </div>
+    <div class="cs1 ce12">
+      <p class='font1'>工程記号のみ選択</p>
+      <p class='font2'>
+        選択した範囲内で工程オブジェクトのみを再選択します。
+      </p>
+    </div>
+    <div class="cs2 ce5">
+      <button type="button" class="button-small button-primary btn-style" id="Select_only_Process">工程ONLY</button>
+    </div>
+
+    <!-- ↓は画面幅調整用（小さくした時の余白） -->
+    <div class="cs1 ce12" style="width:50px;"></div>
+
   </div>
 
   <script src="https://miro.com/app/static/sdk.1.1.js"></script>
   <script src="src/LeftSidebarItem.js"></script>
   <script type="text/javascript" src="src/draw-line.js"></script>
   <script type="module" src="src/app.js"></script>
+  <script type="module" src="src/SelectOnlyProcess.js"></script>
 </body>
 
 </html>
