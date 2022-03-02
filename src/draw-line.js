@@ -49,6 +49,15 @@ const UTIL = {
     CONFIG.mode.line = (CONFIG.mode.line +1) % 2;
     
     return CONFIG.mode.line;
+  },
+  // 更新する対象のシェイプやスタイル判定
+  check: {
+    Obj: function(_target){
+      return (
+        _target.style.shapeType === 3 &&
+        _target.style.backgroundColor === "#d3d3d3"
+        );
+    }
   }
 };
 
@@ -117,13 +126,30 @@ async function WidgetAction(){
       //接続線が選択されているとき
       case 'LINE':
         console.log('clicked: '+ sel[0].type)
+        console.log('Not 工程オブジェクト')
         SelActionLine(sel[0]);
+        break;
+
+      // SHAPEだったとき
+      case 'SHAPE':
+        console.log('clicked: '+ sel[0].type);
+        
+        // 工程オブジェクト以外を選択したとき⇒処理終了
+        if(!UTIL.check.Obj(sel[0])){
+          console.log('Not 工程オブジェクト')
+          console.groupEnd();
+          SelActionElse();
+          return false;
+        }
+        
+        SelActionWidget(sel[0]);
         break;
         
       // それ以外の時（接続線追加対象）
       default:
         console.log('clicked: '+ sel[0].type)
-        SelActionWidget(sel[0]);
+        console.log('Not 工程オブジェクト')
+        SelActionElse();
         break;
     }
     
@@ -143,6 +169,13 @@ async function WidgetAction(){
   async function SelActionLine(target){
     miro.showNotification('接続線がクリックされました。<br>⇒連続選択クリア');
     UTIL.clear.Click();
+  }
+
+  /* function SelActionElse */
+  //工程オブジェクト以外が選択されているとき function
+  async function SelActionElse(target){
+    miro.showNotification('工程以外がクリックされました。<br>後工程を選択してください。');
+    // UTIL.clear.Click();
   }
     
   /* function SelActionWidget */
