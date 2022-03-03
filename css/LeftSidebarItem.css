@@ -96,16 +96,6 @@ body {
     margin-top: 5px;
 }
 
-.process2{
-  width: 10px;
-  height: 20px;
-  background-color: #d3d3d3;
-  border: solid 1px #000000;
-  opacity: 1;
-  position: relative;
-  margin: 25px 29px 0px;
-}
-
 .process2::before{
   content: "";
   width: 10px;
@@ -115,6 +105,16 @@ body {
   position: absolute;
   bottom: 20px;
   left: -1px;
+}
+
+.process2{
+  width: 10px;
+  height: 20px;
+  background-color: #d3d3d3;
+  border: solid 1px #000000;
+  opacity: 1;
+  position: relative;
+  margin: 25px 29px 0px;
 }
 
 .process4::before{
