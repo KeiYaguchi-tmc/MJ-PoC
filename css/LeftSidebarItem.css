@@ -98,32 +98,66 @@ body {
 
 .process2{
   width: 10px;
-  height: 40px;
+  height: 20px;
   background-color: #d3d3d3;
   border: solid 1px #000000;
   opacity: 1;
-  margin: auto;
-  margin-top: 5px;
+  position: relative;
+  margin: 25px 29px 0px;
+}
+
+.process2::before{
+  content: "";
+  width: 10px;
+  height: 20px;
+  border: dotted 1px #000000;
+  opacity: 1;
+  position: absolute;
+  bottom: 20px;
+  left: -1px;
+}
+
+.process4::before{
+  content: "";
+  width: 10px;
+  height: 30px;
+  border: dotted 1px #000000;
+  opacity: 1;
+  position: absolute;
+  bottom: 10px;
+  left: -1px;
 }
 
 .process4{
   width: 10px;
-  height: 40px;
+  height: 10px;
   background-color: #d3d3d3;
   border: solid 1px #000000;
   opacity: 1;
-  margin: auto;
-  margin-top: 5px;
+  margin: 35px 29px 0px;
+  position: relative;
+}
+
+.process4::after{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-top: dotted 1px #000000;
+  border-bottom: dotted 1px #000000;
+  opacity: 1;
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
 }
 
 .process16{
-  width: 10px;
-  height: 40px;
+  width: 30px;
+  height: 10px;
   background-color: #d3d3d3;
   border: solid 1px #000000;
   opacity: 1;
   margin: auto;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .organization{
