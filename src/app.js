@@ -53,6 +53,11 @@ const UTIL = {
         _target.style.shapeType === 3 &&
         _target.style.backgroundColor === "#d3d3d3"
         );
+    },
+    Aspect: function(_target){
+      return (
+        _target.width < _target.height
+        );
     }
   }
 };
@@ -62,15 +67,15 @@ const UTIL = {
 const UPDATE = {
   width: {
     Recommend: function(){
-      miro.showNotification('記号幅: width / Recommend');
+      // miro.showNotification('記号幅: width / Recommend');
       UPDATE.Styles('width');
     },
     Up: function(){
-      miro.showNotification('記号幅: width / Up');
+      // miro.showNotification('記号幅: width / Up');
       UPDATE.Styles('width',1);
     },
     Down: function(){
-      miro.showNotification('記号幅: width / Down');
+      // miro.showNotification('記号幅: width / Down');
       UPDATE.Styles('width',-1);
     },
   },
@@ -80,11 +85,11 @@ const UPDATE = {
       UPDATE.Styles('fontSize');
     },
     Up: function(){
-      miro.showNotification('文字サイズ: fontSize / Up');
+      // miro.showNotification('文字サイズ: fontSize / Up');
       UPDATE.Styles('fontSize',1);
     },
     Down: function(){
-      miro.showNotification('文字サイズ: fontSize / Down');
+      // miro.showNotification('文字サイズ: fontSize / Down');
       UPDATE.Styles('fontSize',-1);
     },
   },
@@ -127,6 +132,7 @@ const UPDATE = {
               break;
             case 'width':
               if(!flgWidth){return false}
+              if(!UTIL.check.Aspect(widget)){return false}
               updateStyles.width = change
                 ? widget.width + (widget.width * CONFIG.style.width.change * change)
                 : CONFIG.style.width.default  // 推奨値
