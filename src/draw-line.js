@@ -124,11 +124,11 @@ async function WidgetAction(){
         break;
         
       //接続線が選択されているとき
-      case 'LINE':
-        console.log('clicked: '+ sel[0].type)
-        console.log('Not 工程オブジェクト')
-        SelActionLine(sel[0]);
-        break;
+      // case 'LINE':
+      //   console.log('clicked: '+ sel[0].type)
+      //   console.log('Not 工程オブジェクト')
+      //   SelActionLine(sel[0]);
+      //   break;
 
       // SHAPEだったとき
       case 'SHAPE':
@@ -166,10 +166,10 @@ async function WidgetAction(){
   
   /* function SelActionLine */
   //接続線が選択されているとき function
-  async function SelActionLine(target){
-    miro.showNotification('接続線がクリックされました。<br>⇒連続選択クリア');
-    UTIL.clear.Click();
-  }
+  // async function SelActionLine(target){
+  //   miro.showNotification('接続線がクリックされました。<br>⇒連続選択クリア');
+  //   UTIL.clear.Click();
+  // }
 
   /* function SelActionElse */
   //工程オブジェクト以外が選択されているとき function
