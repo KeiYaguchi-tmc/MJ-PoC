@@ -174,7 +174,7 @@ async function WidgetAction(){
   /* function SelActionElse */
   //工程オブジェクト以外が選択されているとき function
   async function SelActionElse(target){
-    miro.showNotification('工程以外がクリックされました。<br>後工程を選択してください。');
+    miro.showNotification('工程以外がクリックされました。');
     // UTIL.clear.Click();
   }
     
