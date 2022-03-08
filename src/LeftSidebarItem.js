@@ -1,102 +1,95 @@
+//画像情報を格納
 const images = [
-  { src: 'img/かんばん.svg', imgname: 'かんばん' },
-  { src: 'img/ロット形式ポスト.svg', imgname: 'ロット形式ポスト' },
-  { src: 'img/物と情報の停滞.svg', imgname: '停滞' },
-  { src: 'img/ストア（店）.svg', imgname: 'ストア（店）' },
-  { src: 'img/紙・指示書.svg', imgname: '紙・指示書' },
-  { src: 'img/Eメール.svg', imgname: 'Eメール' },
-  { src: 'img/FAX.svg', imgname: 'FAX' },
-  { src: 'img/電話.svg', imgname: '電話' },
-  { src: 'img/システム・アプリケーション.svg', imgname: 'システム・アプリケーション' },
+  { src: 'img/かんばん.svg', text: 'かんばん' },
+  { src: 'img/ロット形式ポスト.svg', text: 'ロット形式ポスト' },
+  { src: 'img/物と情報の停滞.svg', text: '停滞' },
+  { src: 'img/ストア（店）.svg', text: 'ストア（店）' },
+  { src: 'img/紙・指示書.svg', text: '紙・指示書' },
+  { src: 'img/Eメール.svg', text: 'Eメール' },
+  { src: 'img/FAX.svg', text: 'FAX' },
+  { src: 'img/電話.svg', text: '電話' },
+  { src: 'img/システム・アプリケーション.svg', text: 'システム・アプリケーション' },
 ]
 
-const shapes = [
+//画像情報を格納（ドロップ時Widget）
+//srcはcontair内表示用、previewはプレビュー用
+const widgets = [
   //工程
-  {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,0,300,1800'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M1407 435h281v1729h-281z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-1407 -435)'%3E%3Cpath stroke='%23000' stroke-width='10.313' stroke-miterlimit='8' fill='%23D3D3D3' d='M1412 440h271v1719h-271z'/%3E%3C/g%3E%3C/svg%3E`,
-   color: '#d3d3d3', width: 140, height: 3110, type: 3, opacity: 1, classname: 'process', text: '工程'},
-  //工程 1/2
-  {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-400,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='1361' y='522' width='282' height='804'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-1361 -522)'%3E%3Crect x='1366' y='527' width='272' height='794' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
-   color: '#d3d3d3', width: 140, height: 1480, type: 3, opacity: 1, classname: 'process2', text: '工程1/2'},
-  //工程 1/4
-  {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-600,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='1758' y='538' width='281' height='439'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-1758 -538)'%3E%3Crect x='1763' y='543' width='271' height='429' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
-   color: '#d3d3d3', width: 140, height: 665, type: 3, opacity: 1, classname: 'process4', text: '工程1/4'},
-  //工程 1/16
-  {src: `data:image/svg+xml,%3Csvg width='50' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0,-850,300,1800'%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect x='2095' y='538' width='281' height='117'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23clip0)' transform='translate(-2095 -538)'%3E%3Crect x='2100' y='543' width='271' height='107' stroke='%23000000' stroke-width='10.3125' stroke-miterlimit='8' fill='%23D3D3D3'/%3E%3C/g%3E%3C/svg%3E`,
-   color: '#d3d3d3', width: 600, height: 108, type: 3, opacity: 1, classname: 'process16', text: '工程1/16'},
-]
-
-const lines = [
+  {
+    datano: 0,
+    class: 'shapes',
+    src: 'img/工程1-1.svg',
+    color: '#d3d3d3',
+    width: 140,
+    height: 3110,
+    type: 3,
+    text: '工程',
+  },
+  //工程1/2
+  {
+    datano: 1,
+    class: 'shapes',
+    src: 'img/工程1-2.svg',
+    color: '#d3d3d3',
+    width: 140,
+    height: 1480,
+    type: 3,
+    text: '工程1/2',
+  },
+  //工程1/4
+  {
+    datano: 2,
+    class: 'shapes',
+    src: 'img/工程1-4.svg',
+    color: '#d3d3d3',
+    width: 140,
+    height: 665,
+    type: 3,
+    text: '工程1/4',
+  },
+  //工程1/16
+  {
+    datano: 3,
+    class: 'shapes',
+    src: 'img/工程1-16.svg',
+    color: '#d3d3d3',
+    width: 600,
+    height: 108,
+    type: 3,
+    text: '工程1/16',
+  },
   //情報の流れ
   {
-    src: `data:image/svg+xml,%3Csvg width='300' height='100' xmlns='http://www.w3.org/2000/svg' overflow='hidden' viewBox='0, 0, 800, 100'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath d='M2263 688h766v127h-766z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23a)' transform='translate(-2263 -688)'%3E%3Cpath d='M3028.4 741.188h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-82.5v20.625h82.5Zm-144.375 0h-72.842v20.625h72.842Zm-62.53-20.625-61.875 30.937 61.875 30.938Z'/%3E%3C/g%3E%3C/svg%3E`,
-    start: '8', end: '0', xlength: 400, ylength: 0, style: '1', linename: '', classname: 'info-flow', text: '情報の流れ'
+    datano: 4,
+    class: 'lines',
+    src: 'img/情報の流れ.svg',
+    xlength: 400,
+    ylength: 0,
+    start: '8',
+    end: '0',
+    style: '1',
+    text: '情報の流れ',
   },
 ]
 
-// 図形ウィジェットの状態や設定値の格納
-let shapewidget = {
-  color: '',
-  width: 0,
-  height: 0,
-  text: '',
-  type: 0,
-  opacity: 0,
-  name: '',
-  url: '',
-}
-
-// 線ウィジェットの状態や設定値の格納
-let linewidget = {
-  start_style: 0,
-  end_style: 0,
-  xlength: 0,
-  ylength: 0,
-  style: 0,
-  linename: '',
-  url: '',
-}
-
-
-// 「工程」「会社・組織」の記号をツールバーに描画する
-function addShapes(container) {
-  shapes.forEach(elem =>
-    container.innerHTML += `<div class="shape draggable-item"
-                            shape-image-url="${elem.src}"
-                            background-color="${elem.color}"
-                            shape-width=${elem.width}
-                            shape-height=${elem.height}
-                            shape-type=${elem.type}
-                            shape-opacity=${elem.opacity}>
-                            <div class="item-frame"><div class="${elem.classname}"></div></div>
-                            <div class="item-text">${elem.text}</div>
-                            </div>`);
-}
-
-// 「物の流れ」「情報の流れ」「リードタイム」の記号をツールバーに描画する
-function addLines(container) {
-  lines.forEach(elem =>
-    container.innerHTML += `<div class="line draggable-item"
-                          line-image-url="${elem.src}"
-                          line-start=${elem.start}
-                          line-end=${elem.end}
-                          line-xlength=${elem.xlength}
-                          line-ylength=${elem.ylength}
-                          line-style=${elem.style}
-                          line-name="${elem.linename}">
-                          <div class="item-frame"><div class="${elem.classname}"></div></div>
-                          <div class="item-text">${elem.text}</div>
-                          </div>`);
-}
-
-// 取得した「物と情報の流れ図」記号の画像をツールバーに表示する
-function addImages(container) {
-  images.forEach(elem =>
+// 「工程」「情報の流れ」の記号をツールバーに描画する
+function addContents(container) {
+  widgets.forEach(elem => {
+    // 「工程」「情報の流れ」の記号をツールバーに描画する
     container.innerHTML += `<div class="draggable-item">
-                            <div class="item-frame">
-                            <img src=${elem.src} data-image-url="https://KeiYaguchi-tmc.github.io/MJ-PoC/${elem.src}">
-                            </div>
-                            <div class="item-text">${elem.imgname}</div>
-                            </div>`);
+                              <div class="item-frame">
+                                <img src=${elem.src} class="${elem.class}" preview="https://KeiYaguchi-tmc.github.io/MJ-PoC/${elem.src}" datano="${elem.datano}">
+                              </div>
+                              <div class="item-text">${elem.text}</div>
+                            </div>`});
+  // 取得した「物と情報の流れ図」記号の画像をツールバーに表示する
+  images.forEach(elem => {
+    container.innerHTML += `<div class="draggable-item">
+                              <div class="item-frame">
+                                <img src=${elem.src} preview="https://KeiYaguchi-tmc.github.io/MJ-PoC/${elem.src}">
+                              </div>
+                              <div class="item-text">${elem.text}</div>
+                            </div>`});
 }
 
 // ボードに画像を描画する
@@ -111,29 +104,29 @@ function createImage(canvasX, canvasY, url) {
 }
 
 // ボードに図形を描画する
-function createShape(canvasX, canvasY, shapewidget) {
+function createShape(canvasX, canvasY, no) {
   return miro.board.widgets.create({
     type: 'shape',
     x: canvasX,
     y: canvasY,
-    width: Number(shapewidget.width),
-    height: Number(shapewidget.height),
+    width: Number(widgets[no].width),
+    height: Number(widgets[no].height),
     style: {
       textColor: '#000',
-      backgroundColor: shapewidget.color,
-      backgroundOpacity: shapewidget.opacity,
+      backgroundColor: widgets[no].color,
+      backgroundOpacity: 1,
       bold: 1,
       borderWidth: 7,
       borderColor: '#000',
       fontFamily: 0,
       fontSize: 64,
-      shapeType: shapewidget.type,
+      shapeType: widgets[no].type,
     },
   })
 }
 
 // ボードに線を描画する
-function createLine(canvasX, canvasY, linewidget) {
+function createLine(canvasX, canvasY, no) {
   return miro.board.widgets.create({
     type: 'line',
     startPosition: {
@@ -141,56 +134,32 @@ function createLine(canvasX, canvasY, linewidget) {
       y: canvasY,
     },
     endPosition: {
-      x: canvasX + Number(linewidget.xlength),
-      y: canvasY + Number(linewidget.ylength),
+      x: canvasX + Number(widgets[no].xlength),
+      y: canvasY + Number(widgets[no].ylength),
     },
     style: {
       lineColor: '#000',
       lineThickness: 10,//厚さ
-      lineStartStyle: linewidget.start_style,
-      lineEndStyle: linewidget.end_style, //filled_arrow=8
-      lineStyle: linewidget.style, //実線=2 , 点線=1
+      lineStartStyle: widgets[no].start,
+      lineEndStyle: widgets[no].end, //filled_arrow=8
+      lineStyle: widgets[no].style, //実線=2 , 点線=1
       lineType: 0, //曲がり度
     },
   })
 }
 
-//htmlタグから情報を取得
-function shapeWidgetCreate(target) {
-  shapewidget.color = target.getAttribute('background-color')
-  shapewidget.width = target.getAttribute('shape-width')
-  shapewidget.height = target.getAttribute('shape-height')
-  shapewidget.text = target.innerText
-  shapewidget.type = target.getAttribute('shape-type')
-  shapewidget.opacity = target.getAttribute('shape-opacity')
-  shapewidget.name = target.getAttribute('shape-name')
-  shapewidget.url = target.getAttribute('shape-image-url')
-}
-
-//htmlタグから情報を取得
-function lineWidgetCreate(target) {
-  linewidget.start_style = target.getAttribute('line-start')
-  linewidget.end_style = target.getAttribute('line-end')
-  linewidget.xlength = target.getAttribute('line-xlength')
-  linewidget.ylength = target.getAttribute('line-ylength')
-  linewidget.style = target.getAttribute('line-style')
-  linewidget.linename = target.getAttribute('line-name')
-  linewidget.url = target.getAttribute('line-image-url')
-}
-
 function bootstrap() {
   const container = document.getElementById('container')
 
-  addShapes(container)
-  addLines(container)
-  addImages(container)
+  //コンテナにアイコンを設置する
+  addContents(container)
 
-  //画像
+  //画像の描画関連
   let currentImageUrl
   const imageOptions = {
     draggableItemSelector: 'img',
     getDraggableItemPreview: (targetElement) => {
-      currentImageUrl = targetElement.getAttribute('data-image-url')
+      currentImageUrl = targetElement.getAttribute('preview')
       return {
         width: 150,
         height: 150,
@@ -204,39 +173,37 @@ function bootstrap() {
   }
   miro.board.ui.initDraggableItemsContainer(container, imageOptions)
 
-  //図形
-  const shapeOptions = {
-    draggableItemSelector: '.shape ',
+  //図形の描画関連
+  let currentWidgetsPreview;
+  let currentWidgetsNo;
+
+  let currentClassName;
+  const widgetOptions = {
+    //CSSセレクタが「.shapes」or「.lines」
+    draggableItemSelector: '.shapes,.lines',
+    //プレビュー
     getDraggableItemPreview: (targetElement) => {
-      shapeWidgetCreate(targetElement)
+      currentWidgetsPreview = targetElement.getAttribute('preview');
+      currentWidgetsNo = targetElement.getAttribute('datano');
+      currentClassName = targetElement.getAttribute('class');
       return {
         width: 150,
         height: 150,
-        url: shapewidget.url,
+        url: currentWidgetsPreview,
+      };
+    },
+    //ドロップ時
+    onDrop: (canvasX, canvasY) => {
+      if (currentClassName === 'shapes') {
+        console.log('shape create')
+        createShape(canvasX, canvasY, currentWidgetsNo)
+      } else if (currentClassName === 'lines') {
+        console.log('line create')
+        createLine(canvasX, canvasY, currentWidgetsNo)
       }
     },
-    onDrop: (canvasX, canvasY) => {
-      console.log('shape create')
-      createShape(canvasX, canvasY, shapewidget)
-    },
   }
-  miro.board.ui.initDraggableItemsContainer(container, shapeOptions)
-
-  //線
-  const lineOptions = {
-    draggableItemSelector: '.line',
-    getDraggableItemPreview: (targetElement) => {
-      lineWidgetCreate(targetElement)
-      return {
-        url: linewidget.url,
-      }
-    },
-    onDrop: (canvasX, canvasY) => {
-      console.log('line create')
-      createLine(canvasX, canvasY, linewidget)
-    },
-  }
-  miro.board.ui.initDraggableItemsContainer(container, lineOptions)
+  miro.board.ui.initDraggableItemsContainer(container, widgetOptions)
 }
 
 miro.onReady(bootstrap)
