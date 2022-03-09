@@ -22,70 +22,71 @@ body {
 .title {
   font-size: 20px;
   font-weight: bold;
-  color: rgba(0, 0, 0, 1);
-  margin: 18px 0 14px 0;
+  color: rgba(0, 0, 38, 1);
+  margin: 18px 0 0;
   padding-left: 16px;
+  font-family:'Meiryo';
 }
 
 #container {
   height: auto; 
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   /* padding: 14px; */
   box-sizing: border-box;
-  touch-action: pan-y;
+  /* touch-action: pan-y; */
+  padding-left: 15px;
 }
 
 .item-frame{
   /* width: 80px; */
   width: 100%;
-  height: 50px;
-  text-align: center;
+  height: 48px;
+  display: flex;
+  justify-content: center; /*左右中央揃え*/
+  align-items: center;     /*上下中央揃え*/
 }
 
 .item-frame img {
-  /* max-width: 40px;
-  max-height: 40PX; */
-  width: 80%;
-  height: 80%;
+  display: block;
+  width: 85%;
+  height: 85%;
   cursor: pointer;
-  background-color: #F5F5F7;
-  padding: 5%;
   font-size: 1px;
+  /* margin-top: 5px; */
 }
 
 .item-text {
   width: 100%;
-  height: 20px;
+  height: 17px;
   font-size: 1px;
   text-align: center;
-  color: rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 38, 1);
   font-weight: bold;
-  word-wrap:break-all;
+  /* word-wrap:break-all; */
   transform:scale(0.8);
 }
 
 .draggable-item {
   /* margin:4px; */
   margin: 2%;
-  /* width: 70px; */
-  width: 21%;
-  height: 70px;
+  width: 65px;
+  /* width: 21%; */
+  height: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #000;
   font-size: 18px;
-  font-family: sans-serif;
   background-color: #F5F5F7;
   border-radius: 15px;
   flex-direction: column;
 }
-
+/* 
 .process{
     width: 10px;
     height: 40px;
@@ -158,15 +159,15 @@ body {
   opacity: 1;
   margin: auto;
   margin-top: 20px;
-}
+} */
 
 .organization{
-    width: 50px;
-    height: 30px;
-    border: solid 1px #000000;
-    border-radius: 8px;
-    margin: auto;
-    margin-top: 10px;
+  width: 50px;
+  height: 30px;
+  border: solid 1px #000000;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 10px;
 }
 
 .info-flow {
@@ -196,29 +197,41 @@ body {
 .font1 {
   font-size: 16px;
   font-weight: bold;
-  color: rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 38, 1);
   line-height: 1.2;
   padding-left: 24px;
   margin: 5px 0;
   display: block;
+  font-family:'Meiryo';
 }
 
 .font2 {
   font-size: 12px;
-  color: rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 38, 1);
   padding-left: 24px;
   line-height: 1.2;
   margin: 0px;
   display: block;
+  font-family:'Meiryo';
+}
+
+.font3 {
+  font-size: 12px;
+  color: rgba(0, 0, 38, 1);
+  line-height: 1.2;
+  margin: 0px;
+  display: block;
+  text-align: right;
+  font-family:'Meiryo';
 }
 
 .top-line {
-  border-bottom: 1px solid rgb(225, 224, 231);
+  border-bottom: 1px solid rgb(232, 232, 232);
   /* width: 90%; */
   /* padding: 5%; */
   /* margin-top: 20px; */
   height: 1px;
-  margin: 5px;
+  margin: 12px 0 12px 0;
 }
 
 .button-small.button-primary.btn-style {
