@@ -198,7 +198,7 @@ async function selectionWidgetsUpdate() {
     type2.map((T2)=>{
       // ボタンにクリック処理を追加
       miro.board.ui.initDraggableItemsContainer(CONFIG.$.sizechange, {
-        draggableItemSelector: `.button-small.${T1}.${T2.toLowerCase()}`,
+        draggableItemSelector: `.change_in.${T1}.${T2.toLowerCase()}`,
         onClick: () => {
           UPDATE[T1][T2]();
         }
