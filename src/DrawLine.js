@@ -34,7 +34,7 @@ const UTIL = {
   set: {
     $: {
       Button: function(){
-        return CONFIG.$.button = CONFIG.$.container.querySelector('.mode-change');
+        return CONFIG.$.button = CONFIG.$.container.querySelector('#mode-change-button');
       }
     }
   },
@@ -47,6 +47,7 @@ const UTIL = {
   },
   Mode: function(){
     CONFIG.mode.line = (CONFIG.mode.line +1) % 2;
+    CONFIG.$.button.classList = CONFIG.mode.line? "on": "";
     
     return CONFIG.mode.line;
   },
@@ -89,7 +90,7 @@ async function LeftSideBarAdd(){
   
   // ボタンにクリック処理を追加
   miro.board.ui.initDraggableItemsContainer(CONFIG.$.container, {
-    draggableItemSelector: '.toggle.mode-change',
+    draggableItemSelector: '#mode-change-button',
     onClick: () => {
       UTIL.Mode();
       miro.showNotification('物の流れ線描写モード: ' + CONFIG.mode.line_text[CONFIG.mode.line]);
