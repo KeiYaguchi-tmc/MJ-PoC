@@ -32,19 +32,7 @@
   /* margin: auto; */
 }
 
-#toggle-frame {
-  /* flex-basis: auto; */
-  padding: 0;
-  width: 20px;
-  height: 20px;
-  /* margin: 14px 0 0 110px; */
-  /* margin-top: 32px; */
-}
-
 .text {
   font-size: 12px;
   margin: 0 0 0 10px;
 }
-
-
-

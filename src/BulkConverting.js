@@ -124,19 +124,37 @@ const UPDATE = {
           switch(type){
             case 'fontSize':
               if(!flgFontSize){return false} 
-              updateStyles.style = Object.assign(widget.style,{fontSize:CONFIG.style.fontSize.list[(
-                change
-                ? UTIL.get.FontSize(widget.style.fontSize, change)
-                : CONFIG.style.fontSize.default  // 推奨値
-              )]})
+              // updateStyles.style = Object.assign(widget.style,{fontSize:CONFIG.style.fontSize.list[(
+              //   change
+              //   ? UTIL.get.FontSize(widget.style.fontSize, change)
+              //   : CONFIG.style.fontSize.default  // 推奨値
+              // )]})
+              let newFontSize;
+              if(change){
+                newFontSize = UTIL.get.FontSize(widget.style.fontSize, change);
+              }else{
+                newFontSize = CONFIG.style.fontSize.default;
+              }
+              document.getElementById('size-change-font-value').innerHTML = CONFIG.style.fontSize.list[newFontSize];
+              // console.log(CONFIG.style.fontSize.list[newFontSize]);
+              updateStyles.style = Object.assign(widget.style,{fontSize:CONFIG.style.fontSize.list[newFontSize]});
               break;
             case 'width':
               if(!flgWidth){return false}
               if(!UTIL.check.Aspect(widget)){return false}
-              updateStyles.width = change
-                ? widget.width + (widget.width * CONFIG.style.width.change * change)
-                : CONFIG.style.width.default  // 推奨値
-                ;
+              // updateStyles.width = change
+              //   ? widget.width + (widget.width * CONFIG.style.width.change * change)
+              //   : CONFIG.style.width.default  // 推奨値
+              //   ;
+              let newWidth;
+              if(change){
+                newWidth = Math.round(widget.width + (widget.width * CONFIG.style.width.change * change));
+              }else{
+                newWidth = Math.round(CONFIG.style.width.default);
+              }
+              document.getElementById('selected-btn-width-value').innerHTML = newWidth;
+              // console.log(newWidth);
+              updateStyles.width = newWidth;
               break;
             }
           
@@ -180,7 +198,7 @@ async function selectionWidgetsUpdate() {
     type2.map((T2)=>{
       // ボタンにクリック処理を追加
       miro.board.ui.initDraggableItemsContainer(CONFIG.$.sizechange, {
-        draggableItemSelector: `.button-small.${T1}.${T2.toLowerCase()}`,
+        draggableItemSelector: `.change_in.${T1}.${T2.toLowerCase()}`,
         onClick: () => {
           UPDATE[T1][T2]();
         }
