@@ -3,7 +3,6 @@
 const CONFIG = {
   Init: function(_container){
     CONFIG.$.container = _container;
-    
   },
   mode: {
     line: 0,
@@ -11,7 +10,8 @@ const CONFIG = {
   },
   $: {
     button: {},
-    container: {}
+    container: {},
+    article: {} // 20220315 add kawada
   },
   click: {
     ids: [],
@@ -34,7 +34,7 @@ const UTIL = {
   set: {
     $: {
       Button: function(){
-        return CONFIG.$.button = CONFIG.$.container.querySelector('.mode-change');
+        return CONFIG.$.button = CONFIG.$.container.querySelector('#mode-change-button');
       }
     }
   },
@@ -47,6 +47,8 @@ const UTIL = {
   },
   Mode: function(){
     CONFIG.mode.line = (CONFIG.mode.line +1) % 2;
+    CONFIG.$.button.classList = CONFIG.mode.line? "on": "";
+    CONFIG.$.article.classList = CONFIG.mode.line? "on": ""; // 20220315 add kawada
     
     return CONFIG.mode.line;
   },
@@ -82,14 +84,15 @@ miro.onReady(async function(){
 /* function LeftSideBarAdd */
 // 左メニューにボタン追加
 async function LeftSideBarAdd(){
-  CONFIG.$.container =document.getElementById('toggle-frame')
+  CONFIG.$.container = document.getElementById('toggle-frame');
+  CONFIG.$.article = document.getElementById('mode-change'); // 20220315 add kawada
   
   // ON/OFFで使うのでCONFIGに格納
   UTIL.set.$.Button();
   
   // ボタンにクリック処理を追加
   miro.board.ui.initDraggableItemsContainer(CONFIG.$.container, {
-    draggableItemSelector: '.toggle.mode-change',
+    draggableItemSelector: '#mode-change-button',
     onClick: () => {
       UTIL.Mode();
       miro.showNotification('物の流れ線描写モード: ' + CONFIG.mode.line_text[CONFIG.mode.line]);
