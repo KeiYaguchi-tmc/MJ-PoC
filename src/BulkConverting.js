@@ -66,29 +66,29 @@ const UTIL = {
 // 変更処理の格納
 const UPDATE = {
   width: {
-    Recommend: function(){
+    recommend: function(){
       // miro.showNotification('記号幅: width / Recommend');
       UPDATE.Styles('width');
     },
-    Up: function(){
+    up: function(){
       // miro.showNotification('記号幅: width / Up');
       UPDATE.Styles('width',1);
     },
-    Down: function(){
+    down: function(){
       // miro.showNotification('記号幅: width / Down');
       UPDATE.Styles('width',-1);
     },
   },
   font: {
-    Recommend: function(){
+    recommend: function(){
       // miro.showNotification('文字サイズ: fontSize / Recommend');
       UPDATE.Styles('fontSize');
     },
-    Up: function(){
+    up: function(){
       // miro.showNotification('文字サイズ: fontSize / Up');
       UPDATE.Styles('fontSize',1);
     },
-    Down: function(){
+    down: function(){
       // miro.showNotification('文字サイズ: fontSize / Down');
       UPDATE.Styles('fontSize',-1);
     },
@@ -124,11 +124,6 @@ const UPDATE = {
           switch(type){
             case 'fontSize':
               if(!flgFontSize){return false} 
-              // updateStyles.style = Object.assign(widget.style,{fontSize:CONFIG.style.fontSize.list[(
-              //   change
-              //   ? UTIL.get.FontSize(widget.style.fontSize, change)
-              //   : CONFIG.style.fontSize.default  // 推奨値
-              // )]})
               let newFontSize;
               if(change){
                 newFontSize = UTIL.get.FontSize(widget.style.fontSize, change);
@@ -136,16 +131,12 @@ const UPDATE = {
                 newFontSize = CONFIG.style.fontSize.default;
               }
               document.getElementById('size-change-font-value').innerHTML = CONFIG.style.fontSize.list[newFontSize];
-              // console.log(CONFIG.style.fontSize.list[newFontSize]);
+              console.log(CONFIG.style.fontSize.list[newFontSize]);
               updateStyles.style = Object.assign(widget.style,{fontSize:CONFIG.style.fontSize.list[newFontSize]});
               break;
             case 'width':
               if(!flgWidth){return false}
               if(!UTIL.check.Aspect(widget)){return false}
-              // updateStyles.width = change
-              //   ? widget.width + (widget.width * CONFIG.style.width.change * change)
-              //   : CONFIG.style.width.default  // 推奨値
-              //   ;
               let newWidth;
               if(change){
                 newWidth = Math.round(widget.width + (widget.width * CONFIG.style.width.change * change));
@@ -153,7 +144,7 @@ const UPDATE = {
                 newWidth = Math.round(CONFIG.style.width.default);
               }
               document.getElementById('selected-btn-width-value').innerHTML = newWidth;
-              // console.log(newWidth);
+              console.log(newWidth);
               updateStyles.width = newWidth;
               break;
             }
@@ -192,7 +183,7 @@ miro.onReady(async function(){
 });
 
 async function selectionWidgetsUpdate() {
-  const type1 = ['width','font'], type2 = ['Recommend','Up','Down'];
+  const type1 = ['width','font'], type2 = ['recommend','up','down'];
 
   type1.map((T1)=>{
     type2.map((T2)=>{

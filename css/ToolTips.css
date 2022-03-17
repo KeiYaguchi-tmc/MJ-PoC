@@ -1,0 +1,115 @@
+   #help1 li {
+    position: relative;
+   }
+   .help1-tooltips {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: -17em;
+    left: 0em;
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    padding: 0.3em 0.5em;
+    color: #FFFFFF;
+    font-size: 12px;
+    background: #050038;
+    border-radius: 0.5em;
+   }
+   .help1-tooltips:after {
+    width: 100%;
+    content: "";
+    display: block;
+    position: absolute;
+    left: 1em;
+    bottom: -8px;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #050038;
+   }
+
+   #help2 li {
+    position: relative;
+   }
+   .help2-tooltips {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: -2em;
+    left: -10em;
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    padding: 0.3em 0.5em;
+    color: #FFFFFF;
+    font-size: 12px;
+    background: #050038;
+    border-radius: 0.5em;
+   }
+   .help2-tooltips:after {
+    width: 100%;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 3em;
+    bottom: -8px;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #050038;
+   }
+
+   #help3 li {
+    position: relative;
+   }
+   .help3-tooltips {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: -8em;
+    left: -13em;
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    padding: 0.3em 0.5em;
+    color: #FFFFFF;
+    font-size: 12px;
+    background: #050038;
+    border-radius: 0.5em;
+   }
+   .help3-tooltips:after {
+    width: 100%;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 9em;
+    bottom: -8px;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #050038;
+   }
+
+   #help4 li {
+    position: relative;
+   }
+   .help4-tooltips {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: -6em;
+    left: -11em;
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    padding: 0.3em 0.5em;
+    color: #FFFFFF;
+    font-size: 12px;
+    background: #050038;
+    border-radius: 0.5em;
+   }
+   .help4-tooltips:after {
+    width: 100%;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 7em;
+    bottom: -8px;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #050038;
+   }
