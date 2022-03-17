@@ -1,6 +1,6 @@
 async function init() {
 	// ボタンクリックでイベント
-	document.getElementById("Select_only_Process").addEventListener("click", rangeSelection, false);
+	document.getElementById("select-only-process").addEventListener("click", rangeSelection, false);
 	// document.getElementById("Exclude_only_Process").addEventListener("click", rangeSelection, false);
 
 	async function rangeSelection(btn) {
