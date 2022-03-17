@@ -3,7 +3,6 @@
 const CONFIG = {
   Init: function(_container){
     CONFIG.$.container = _container;
-    
   },
   mode: {
     line: 0,
@@ -11,7 +10,8 @@ const CONFIG = {
   },
   $: {
     button: {},
-    container: {}
+    container: {},
+    article: {}
   },
   click: {
     ids: [],
@@ -48,7 +48,7 @@ const UTIL = {
   Mode: function(){
     CONFIG.mode.line = (CONFIG.mode.line +1) % 2;
     CONFIG.$.button.classList = CONFIG.mode.line? "on": "";
-    
+    CONFIG.$.article.classList = CONFIG.mode.line? "on": "";
     return CONFIG.mode.line;
   },
   // 更新する対象のシェイプやスタイル判定
@@ -83,7 +83,8 @@ miro.onReady(async function(){
 /* function LeftSideBarAdd */
 // 左メニューにボタン追加
 async function LeftSideBarAdd(){
-  CONFIG.$.container =document.getElementById('toggle-frame')
+  CONFIG.$.container = document.getElementById('toggle-frame');
+  CONFIG.$.article = document.getElementById('mode-change');
   
   // ON/OFFで使うのでCONFIGに格納
   UTIL.set.$.Button();

@@ -1,106 +1,76 @@
-//srcはcontair内表示用、previewはプレビュー用
 const widgets = [
   //工程
   {
-    datano: 0,
     class: 'shapes',
-    src: 'img/工程1-1.svg',
     color: '#d3d3d3',
     width: 140,
     height: 3110,
     type: 3,
-    text: '工程',
   },
   //工程1/2
   {
-    datano: 1,
     class: 'shapes',
-    src: 'img/工程1-2.svg',
     color: '#d3d3d3',
     width: 140,
     height: 1480,
     type: 3,
-    text: '工程1/2',
   },
   //工程1/4
   {
-    datano: 2,
     class: 'shapes',
-    src: 'img/工程1-4.svg',
     color: '#d3d3d3',
     width: 140,
     height: 665,
     type: 3,
-    text: '工程1/4',
   },
   //工程1/16
   {
-    datano: 3,
     class: 'shapes',
-    src: 'img/工程1-16.svg',
     color: '#d3d3d3',
     width: 600,
     height: 108,
     type: 3,
-    text: '工程1/16',
   },
+  //停滞
+  {},
   //情報の流れ
   {
-    datano: 4,
     class: 'lines',
-    src: 'img/情報の流れ.svg',
     xlength: 400,
     ylength: 0,
     start: '8',
     end: '0',
     style: '1',
-    text: '情報の流れ',
   },
 ]
 
 // 「工程」「情報の流れ」の記号をツールバーに描画する
 function addContents(container) {
-  // widgets.forEach(elem => {
-  //   // 「工程」「情報の流れ」の記号をツールバーに描画する
-  //   container.innerHTML += `<div class="draggable-item">
-  //                             <div class="item-frame">
-  //                               <img src=${elem.src} class="${elem.class}" preview="https://KeiYaguchi-tmc.github.io/MJ-PoC/${elem.src}" datano="${elem.datano}">
-  //                             </div>
-  //                             <div class="item-text">${elem.text}</div>
-  //                           </div>`});
-  // // 取得した「物と情報の流れ図」記号の画像をツールバーに表示する
-  // images.forEach(elem => {
-  //   container.innerHTML += `<div class="draggable-item">
-  //                             <div class="item-frame">
-  //                               <img src=${elem.src} preview="https://KeiYaguchi-tmc.github.io/MJ-PoC/${elem.src}">
-  //                             </div>
-  //                             <div class="item-text">${elem.text}</div>
-  //                           </div>`});
-
-  // アイコンをツールバーに描画する
-  const buttonLength = 14; // svg画像icon01～14
-  for(var i=1;i<=buttonLength;i++){
-    const num = ('0' + i).slice(-2);
+    // アイコンをツールバーに描画する
+    const buttonLength = 14; // svg画像icon01～14
+    for(var i=1;i<=buttonLength;i++){
+      const num = ('0' + i).slice(-2);
+      container.innerHTML += `
+        <div class="draggable-item ${i>7?'sub':''}">
+            <img class="${(widgets[i-1]||{}).class}" 
+                 src="img/icon${num}.svg" 
+                 preview="https://akihomaeda-tmc.github.io/index_only/img/icon${num}_.svg" 
+                 datano="${i-1}">
+        </div>
+      `;
+    }
+    
+    // すべて表示ボタン
     container.innerHTML += `
-      <div class="draggable-item ${i>7?'sub':''}">
-          <img class="${(widgets[i-1]||{}).class}" 
-               src="img/icon${num}.svg" 
-               preview="https://KeiYaguchi-tmc.github.io/MJ-PoC/img/icon${num}_.svg" 
-               datano="${i-1}">
+      <div class="draggable-item sub"></div>
+      <div class="openclose">
+        <div class="item" id="openclose">
+          <span class="icon"></span>
+          <span class="icon-text"></span>
+        </div>
       </div>
     `;
-  }
-  
-  // すべて表示ボタン
-  container.innerHTML += `
-    <div class="draggable-item sub"></div>
-    <div class="openclose">
-      <div class="item" id="openclose">
-        <span class="icon"></span>
-        <span class="icon-text"></span>
-      </div>
-    </div>
-  `;
+    
 }
 
 // ボードに画像を描画する
@@ -108,7 +78,7 @@ function createImage(canvasX, canvasY, url) {
   return miro.board.widgets.create({
     type: 'image',
     url: url,
-    scale: 0.3,
+    scale: 10,
     x: canvasX,
     y: canvasY,
   })
@@ -217,7 +187,7 @@ function bootstrap() {
   miro.board.ui.initDraggableItemsContainer(container, widgetOptions)
 }
 
-miro.onReady(bootstrap)
+miro.onReady(bootstrap);
 
 $(function(){
 	$(document).on('click', '.openclose', function(){

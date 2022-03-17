@@ -7,6 +7,8 @@
   <link href="css/reset.css" rel="stylesheet" type="text/css" media="all">
   <link href="css/LeftSidebarItem.css" rel="stylesheet" type="text/css" media="all">
   <link href="css/DrawLine.css" rel="stylesheet" type="text/css" media="all">
+  <link href="css/Addstyle.css" rel="stylesheet" type="text/css" media="all">
+  <link href="css/ToolTips.css" rel="stylesheet" type="text/css" media="all">
   <!-- <link rel="stylesheet" href="https://unpkg.com/mirotone/dist/styles.css"> -->
 </head>
 
@@ -28,93 +30,139 @@
   </svg>デジタル物情アプリ</h1>
   </article>
   
-  <!-- App: Drag-and-Drop -->
-  <article style="padding-bottom: 2px;">
-    <div class="col">
-      <h2>記号</h2>
-      <p>ドラッグ&ドロップで使用</p>
-    </div>
-    <div id="container"></div>
-  </article>
+  <div class="tab-wrapper">
+    <ul class="tab-ctrl">
+      <li class="tab-ctrl-btn active" data-tab-target="1">ツール</li>
+      <li class="tab-ctrl-btn" data-tab-target="2">操作方法</li>
+    </ul>
 
-  <!-- App: 物の流れ線描写モード -->
-  <article id="mode-change">
-    <div class="col">
-      <div>
-        <h2>物の流れ線コネクトモード</h2>
-        <p>繋ぎたい工程をクリック</p>
-      </div>
-      <div id="toggle-frame">
-        <!-- <input type="checkbox" tabindex="0"> --><div id="mode-change-button"><span/></div>
-      </div>
-    </div>
-  </article>
+    <div class="tab-content tool show" data-tab-index="1">
+      <!-- App: Drag-and-Drop -->
+      <article style="padding-bottom: 2px;">
+        <div class="col" id="help1">
+          <h2>記号<li class="question" data-text="ドラック&ドロップで使用。<br/>2個目からはCtrl+Dで複製できます。"></li></h2>
+          <!-- <p>ドラッグ&ドロップで使用</p> -->
+        </div>
+        <div id="container"></div>
+        <div class="col process-info">
+          <button type="button" class="process-info--btn" id="factorymark">
+            <img class="process-info--btn__image" src="./img/proess.svg" alt="">
+            <span class="process-info--btn__label">工場マークの出し方はコチラ</span>
+          </button>
+        </div>
+      </article>
 
-  <!-- App: サイズ一括変更 -->
-  <article id="size-change">
-    <div class="cs1 ce12">
-      <h2>工程記号の一括編集</h2>
-      <p>選択した範囲内の工程記号に対して一括編集<br/>※他の図形には影響ありません</p>
-    </div>
-    <div class="border col" >
-        <div class="set">
-          <p>文字サイズ</p>
-        </div>
-      <div class="set col">
-        <div>
-          <button type="button" class="change_in font recommend" id="size-change-font-default">デフォルト</button>
-        </div>
+      <!-- App: 物の流れ線描写モード -->
+      <article id="mode-change">
         <div class="col">
-          <div class="font value">
-            <span id="size-change-font-value">0</span>
+          <div id="help2">
+            <h2>物の流れ線コネクトモード<li class="question" data-text="繋ぎたい工程をクリック。"></bli></h2>
+            <!-- <p>繋ぎたい工程をクリック</p> -->
           </div>
-          <div class="font arrow">
-            <span class="change_in font up" id="size-change-font-larger" title="大きく"></span>
-            <span class="change_in font down" id="size-change-font-smaller" title="小さく"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="border col" >
-      <div class="set">
-        <p>工程記号の幅</p>
-      </div>
-      <div class="set col">
-        <div>
-          <button type="button" class="change_in width recommend" id="selected-btn-width-default">デフォルト</button>
-        </div>
-        <div class="col">
-          <div class="width value">
-            <span id="selected-btn-width-value">0</span>
-          </div>
-          <div class="width arrow">
-            <span class="change_in width up" id="selected-btn-width-larger" title="広く"></span>
-            <span class="change_in width down" id="selected-btn-width-smaller" title="狭く"></span>
+          <div id="toggle-frame">
+            <!-- <input type="checkbox" tabindex="0"> -->
+            <div id="mode-change-button"><span /></div>
           </div>
         </div>
-      </div>
-  </article>
+      </article>
 
-  <!-- App: 工程のみ選択 -->
-  <article id="select-only">
-    <div class="col">
-      <div>
-        <h2>工程記号のみ選択</h2>
-        <p>選択した範囲内で工程記号のみ選択</p>
-      </div>
-      <div>
-        <button type="button" class="button-small button-primary btn-style" id="select-only-process">選択</button>
-      </div>
+      <!-- App: サイズ一括変更 -->
+      <article id="size-change">
+        <div class="cs1 ce12" id="help3">
+          <h2>工程記号の一括編集<li class="question" data-text="選択した範囲内の工程記号に対して一括編集。<br/>※他の図形には影響ありません。"></li></h2>
+          <!-- <p>選択した範囲内の工程記号に対して一括編集<br/>※他の図形には影響ありません</p> -->
+        </div>
+        <div class="border col">
+          <div class="set">
+            <p>文字サイズ</p>
+          </div>
+          <div class="set col">
+            <div>
+              <button type="button" class="change_in font recommend" id="size-change-font-default">デフォルト</button>
+            </div>
+            <div class="col">
+              <div class="font value">
+                <span id="size-change-font-value">0</span>
+              </div>
+              <div class="font arrow">
+                <span class="change_in font up" id="size-change-font-larger" title="大きく"></span>
+                <span class="change_in font down" id="size-change-font-smaller" title="小さく"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border col">
+          <div class="set">
+            <p>工程記号の幅</p>
+          </div>
+          <div class="set col">
+            <div>
+              <button type="button" class="change_in width recommend" id="selected-btn-width-default">デフォルト</button>
+            </div>
+            <div class="col">
+              <div class="width value">
+                <span id="selected-btn-width-value">0</span>
+              </div>
+              <div class="width arrow">
+                <span class="change_in width up" id="selected-btn-width-larger" title="広く"></span>
+                <span class="change_in width down" id="selected-btn-width-smaller" title="狭く"></span>
+              </div>
+            </div>
+          </div>
+      </article>
+      <!-- App: 工程のみ選択 -->
+      <article id="select-only">
+        <div class="col" id="help4">
+          <h2>工程記号のみ選択<li class="question"data-text="選択した範囲内で工程記号のみ選択。"></li></h2>
+          <!-- <p>選択した範囲内で工程記号のみ選択</p> -->
+          <div style="margin-top: 0;">
+            <button type="button" class="button-small button-primary btn-style" id="select-only-process">選択</button>
+          </div>
+        </div>
+      </article>
     </div>
-  </article>
+
+    <div class="tab-content guide" data-tab-index="2">
+      <article id="guideList">
+        <ul class="guide-list">
+          <li class="guide-list--item item__primary">
+            <a class="guide-list--item__btn"
+              href="http://nt-wave.mx.toyota.co.jp/tmc/247/Pages/Guidebook/%E7%89%A9%E6%83%85%E7%B7%A81/index.html#page=1"
+              target="_blank">
+              <img src="./img/book.svg" alt="">
+              <span>物と情報の流れ図ガイドブック</span>
+            </a>
+          </li>
+          <li class="guide-list--item item__secondary">
+            <a class="guide-list--item__btn" href="https://toyotajp.sharepoint.com/sites/msteams_2de582/SitePages/%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95.aspx" target="_blank">
+              <span>各機能概要・操作方法</span>
+            </a>
+          </li>
+          <li class="guide-list--item item__secondary">
+            <a class="guide-list--item__btn" href="https://toyotajp.sharepoint.com/sites/msteams_2de582/SitePages/%E5%B0%8E%E5%85%A5%E6%89%8B%E9%A0%86.aspx#%E3%83%9C%E3%83%BC%E3%83%89%E3%82%92%E5%85%B1%E6%9C%89%E3%81%99%E3%82%8B%28%E9%96%B2%E8%A6%A7%E3%83%BB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%81%AE%E3%81%BF%29" target="_blank">
+              <span>ボードの共有方法</span>
+            </a>
+          </li>
+          <li class="guide-list--item item__secondary">
+            <a class="guide-list--item__btn" href="https://teams.microsoft.com/l/channel/19%3A196dc8776dbb48268e4aea0a6e78465e%40thread.tacv2/%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B?groupId=1658d27c-41bc-4fa7-bc8c-fe05051c8cb7&tenantId=d1c1335e-f582-42a9-b6fe-5e1a16eb9bc8" target="_blank">
+              <span>お問い合わせ</span>
+            </a>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
 
   <script type="text/javascript" src="https://miro.com/app/static/sdk.1.1.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="src/LeftSidebarItem.js"></script>
-  <script type="text/javascript" src="src/DrawLine.js"></script>
+  <script src="src/Tab.js"></script>
+  <script src="src/LeftSidebarItem.js"></script>
+  <script src="src/DrawLine.js"></script>
+  <script type="module" src="src/Modal.js"></script>
   <script type="module" src="src/BulkConverting.js"></script>
   <script type="module" src="src/SelectOnlyProcess.js"></script>
+  <script type="module" src="src/ToolTips.js"></script>
 </body>
 
 </html>
