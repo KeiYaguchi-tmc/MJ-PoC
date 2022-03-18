@@ -54,7 +54,7 @@ function addContents(container) {
         <div class="draggable-item ${i>7?'sub':''}">
             <img class="${(widgets[i-1]||{}).class}" 
                  src="img/icon${num}.svg" 
-                 preview="https://akihomaeda-tmc.github.io/index_only/img/icon${num}_.svg" 
+                 preview="https://KeiYaguchi-tmc.github.io/MJ-PoC/img/icon${num}_.svg" 
                  datano="${i-1}">
         </div>
       `;
