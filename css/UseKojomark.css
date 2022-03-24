@@ -9,8 +9,8 @@ body {
 .topNavigation {
     height: 50px;
     text-align: center;
-    background-color: rgba(179, 192, 255, 1);
-    color: rgb(0, 0, 0);
+    background-color: #3f67fb;
+    color: #fff;
     line-height: 50px;
 }
 
