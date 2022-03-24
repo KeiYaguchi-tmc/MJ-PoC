@@ -1,199 +1,239 @@
 /* CONFIG */
 // 状態や設定値の格納
 const CONFIG = {
-  Init: function(_sizechange){
-    CONFIG.$.sizechange = _sizechange; 
-  },
-  $: {
-    sizechange: {}
-  },
-  // 一括更新:ウィジェットパラメータ
-  style: {
-    width: {
-      change: 0.2,
-      default: 140
+    Init: function(_sizechange) {
+        CONFIG.$.sizechange = _sizechange;
     },
-    fontSize: {
-      default: 7,
-      list: [10,12,14,18,24,36,48,64,80,144,288,999]
+    $: {
+        sizechange: {}
+    },
+    // 一括更新:ウィジェットパラメータ
+    style: {
+        width: {
+            change: 0.2,
+            default: 140
+        },
+        fontSize: {
+            default: 7,
+            list: [10, 12, 14, 18, 24, 36, 48, 64, 80, 144, 288, 999]
+        },
+        height: {
+            list: [3110, 1480, 665, 108]
+        }
     }
-  }
 };
 
 /* UTIL */
 // 共通処理（ユーティリティ）の格納
 const UTIL = {
-  get: {
-    Id: async function(_id){
-      const result = await miro.board.widgets.get({id:_id});
-      return result;
+    get: {
+        Id: async function(_id) {
+            const result = await miro.board.widgets.get({ id: _id });
+            return result;
+        },
+        FontSize: function fontsize(_num, _change) {
+            const arr = CONFIG.style.fontSize.list;
+            const indexof = arr.indexOf(_num);
+
+            if (indexof > 0) {
+                return Math.min(Math.max(
+                    indexof + _change, 0), 10);
+            } else {
+                return Math.min(Math.max(
+                    arr.findIndex(function(_value) {
+                        return (_num < _value);
+                    }) - 1 + _change, 0), 10);
+
+            }
+        }
     },
-    FontSize: function fontsize(_num,_change){
-      const arr = CONFIG.style.fontSize.list;
-      const indexof = arr.indexOf(_num);
-      
-      if(indexof > 0) { 
-        return Math.min(Math.max(
-          indexof + _change
-        , 0), 10); 
-      } else {
-        return Math.min(Math.max(
-          arr.findIndex(function(_value){
-            return (_num < _value);
-          }) - 1 + _change
-        , 0), 10);
-        
-      }
+    // 更新する対象のシェイプやスタイル判定
+    check: {
+        Obj: function(_target) {
+            return (
+                _target.style.shapeType === 3 &&
+                _target.style.backgroundColor === "#d3d3d3"
+            );
+        },
+        Aspect: function(_target) {
+            return (
+                _target.width < _target.height
+            );
+        }
     }
-  },
-  // 更新する対象のシェイプやスタイル判定
-  check: {
-    Obj: function(_target){
-      return (
-        _target.style.shapeType === 3 &&
-        _target.style.backgroundColor === "#d3d3d3"
-        );
-    },
-    Aspect: function(_target){
-      return (
-        _target.width < _target.height
-        );
-    }
-  }
 };
 
 /* UPDATE */
 // 変更処理の格納
 const UPDATE = {
-  width: {
-    recommend: function(){
-      // miro.showNotification('記号幅: width / Recommend');
-      UPDATE.Styles('width');
+    width: {
+        recommend: function() {
+            // miro.showNotification('記号幅: width / Recommend');
+            UPDATE.Styles('width');
+        },
+        up: function() {
+            // miro.showNotification('記号幅: width / Up');
+            UPDATE.Styles('width', 1);
+        },
+        down: function() {
+            // miro.showNotification('記号幅: width / Down');
+            UPDATE.Styles('width', -1);
+        },
     },
-    up: function(){
-      // miro.showNotification('記号幅: width / Up');
-      UPDATE.Styles('width',1);
+    font: {
+        recommend: function() {
+            // miro.showNotification('文字サイズ: fontSize / Recommend');
+            UPDATE.Styles('fontSize');
+        },
+        up: function() {
+            // miro.showNotification('文字サイズ: fontSize / Up');
+            UPDATE.Styles('fontSize', 1);
+        },
+        down: function() {
+            // miro.showNotification('文字サイズ: fontSize / Down');
+            UPDATE.Styles('fontSize', -1);
+        },
     },
-    down: function(){
-      // miro.showNotification('記号幅: width / Down');
-      UPDATE.Styles('width',-1);
+    height: {
+        one: function() {
+            UPDATE.Styles('height', 0);
+        },
+        two: function() {
+            UPDATE.Styles('height', 1);
+        },
+        four: function() {
+            UPDATE.Styles('height', 2);
+        },
+        sixteen: function() {
+            UPDATE.Styles('height', 3);
+        },
     },
-  },
-  font: {
-    recommend: function(){
-      // miro.showNotification('文字サイズ: fontSize / Recommend');
-      UPDATE.Styles('fontSize');
-    },
-    up: function(){
-      // miro.showNotification('文字サイズ: fontSize / Up');
-      UPDATE.Styles('fontSize',1);
-    },
-    down: function(){
-      // miro.showNotification('文字サイズ: fontSize / Down');
-      UPDATE.Styles('fontSize',-1);
-    },
-  },
-  Styles: async function(type,_change){
-    
-    const change = _change || false;
-    
-    const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
-    let updatedWidgetsData = []; // 更新したウィジェットのコンソール確認用データ
-    
-    // 選択しているウィジェットデータの有無確認
-    if(!selectionWidgets.length){
-      return false;
-    }
-    
-    // console.time(type,change);
-    
-    //更新処理
-    updatedWidgetsData = await Promise.all(
-      selectionWidgets.map(async function(widget){
-        let updatedWidget = [false];
-        // 更新対象判定
-        if(UTIL.check.Obj(widget)){
-          
-          const updateStyles = {};
-          
-          // 一括更新条件(推奨値)と更新する対象の条件が一致するウィジェットは処理しない
-          const flgWidth =    change? true: widget.width !== CONFIG.style.width.default;
-          const flgFontSize = change? true: widget.style.fontSize !== CONFIG.style.fontSize.list[CONFIG.style.fontSize.default];
-          
-          // 更新値決定
-          switch(type){
-            case 'fontSize':
-              if(!flgFontSize){return false} 
-              let newFontSize;
-              if(change){
-                newFontSize = UTIL.get.FontSize(widget.style.fontSize, change);
-              }else{
-                newFontSize = CONFIG.style.fontSize.default;
-              }
-              document.getElementById('size-change-font-value').innerHTML = CONFIG.style.fontSize.list[newFontSize];
-              console.log(CONFIG.style.fontSize.list[newFontSize]);
-              updateStyles.style = Object.assign(widget.style,{fontSize:CONFIG.style.fontSize.list[newFontSize]});
-              break;
-            case 'width':
-              if(!flgWidth){return false}
-              if(!UTIL.check.Aspect(widget)){return false}
-              let newWidth;
-              if(change){
-                newWidth = Math.round(widget.width + (widget.width * CONFIG.style.width.change * change));
-              }else{
-                newWidth = Math.round(CONFIG.style.width.default);
-              }
-              document.getElementById('selected-btn-width-value').innerHTML = newWidth;
-              console.log(newWidth);
-              updateStyles.width = newWidth;
-              break;
-            }
-          
-          // 更新
-          updatedWidget = await miro.board.widgets.update({
-            id: widget.id, // 更新に必要なウィジェットID
-            text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
-            style: updateStyles.style,
-            width: updateStyles.width
-          });
+    Styles: async function(type, _change) {
+
+        const change = _change || false;
+
+        const selectionWidgets = await miro.board.selection.get(); // 選択しているウィジェットの取得
+        let updatedWidgetsData = []; // 更新したウィジェットのコンソール確認用データ
+
+        // 選択しているウィジェットデータの有無確認
+        if (!selectionWidgets.length) {
+            return false;
         }
-        return updatedWidget[0];
-      })
-    );
-    // console.timeEnd(type,change); // 更新処理時間計測 : end
-    
-    // 更新したウィジェットのコンソール確認：更新していないウィジェットは削除（集計に含めない）
-    // console.log("更新したウィジェット", updatedWidgetsData.filter(Boolean));
-  }
+
+        // console.time(type,change);
+
+        //更新処理
+        updatedWidgetsData = await Promise.all(
+            selectionWidgets.map(async function(widget) {
+                let updatedWidget = [false];
+                // 更新対象判定
+                if (UTIL.check.Obj(widget)) {
+
+                    const updateStyles = {};
+
+                    // 一括更新条件(推奨値)と更新する対象の条件が一致するウィジェットは処理しない
+                    const flgWidth = change ? true : widget.width !== CONFIG.style.width.default;
+                    const flgFontSize = change ? true : widget.style.fontSize !== CONFIG.style.fontSize.list[CONFIG.style.fontSize.default];
+                    //const flgHeight = change ? true : widget.style.height !== CONFIG.style.height.list[CONFIG.style.height.default];
+
+                    // 更新値決定
+                    switch (type) {
+                        case 'fontSize':
+                            if (!flgFontSize) { return false }
+                            let newFontSize;
+                            if (change) {
+                                newFontSize = UTIL.get.FontSize(widget.style.fontSize, change);
+                            } else {
+                                newFontSize = CONFIG.style.fontSize.default;
+                            }
+                            document.getElementById('size-change-font-value').innerHTML = CONFIG.style.fontSize.list[newFontSize];
+                            console.log(CONFIG.style.fontSize.list[newFontSize]);
+                            updateStyles.style = Object.assign(widget.style, { fontSize: CONFIG.style.fontSize.list[newFontSize] });
+                            break;
+                        case 'width':
+                            if (!flgWidth) { return false }
+                            if (!UTIL.check.Aspect(widget)) { return false }
+                            let newWidth;
+                            if (change) {
+                                newWidth = Math.round(widget.width + (widget.width * CONFIG.style.width.change * change));
+                            } else {
+                                newWidth = Math.round(CONFIG.style.width.default);
+                            }
+                            document.getElementById('selected-btn-width-value').innerHTML = newWidth;
+                            console.log(newWidth);
+                            updateStyles.width = newWidth;
+                            break;
+                        case 'height':
+                            //if (!flgWidth) { return false }
+                            let newHeight;
+                            if (change) {
+                                newHeight = CONFIG.style.height.list[change];
+                            } else {
+                                newHeight = CONFIG.style.height.list[0]
+                            }
+                            document.getElementById('selected-btn-width-value').innerHTML = newHeight;
+                            console.log(newHeight);
+                            updateStyles.height = newHeight;
+                            break;
+                    }
+
+                    // 更新
+                    updatedWidget = await miro.board.widgets.update({
+                        id: widget.id, // 更新に必要なウィジェットID
+                        text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
+                        style: updateStyles.style,
+                        width: updateStyles.width,
+                        height: updateStyles.height
+                    });
+                }
+                return updatedWidget[0];
+            })
+        );
+        // console.timeEnd(type,change); // 更新処理時間計測 : end
+
+        // 更新したウィジェットのコンソール確認：更新していないウィジェットは削除（集計に含めない）
+        // console.log("更新したウィジェット", updatedWidgetsData.filter(Boolean));
+    }
 };
 
 /* miro.onReady */
 // メイン処理開始
-miro.onReady(async function(){
-  
-  // console.log(await miro.board.info.get());
-  
-  // // CONFIGを初期化
-  const sizechange = document.getElementById('size-change')
-  CONFIG.Init(sizechange);
-  
-  // 一括変更処理
-  selectionWidgetsUpdate();
-  
+miro.onReady(async function() {
+
+    // console.log(await miro.board.info.get());
+
+    // // CONFIGを初期化
+    const sizechange = document.getElementById('size-change')
+    CONFIG.Init(sizechange);
+
+    // 一括変更処理
+    selectionWidgetsUpdate();
+
 });
 
 async function selectionWidgetsUpdate() {
-  const type1 = ['width','font'], type2 = ['recommend','up','down'];
+    const type1 = ['width', 'font', 'height'],
+        type2 = ['recommend', 'up', 'down'],
+        type3 = ['one', 'two', 'four', 'sixteen'];
 
-  type1.map((T1)=>{
-    type2.map((T2)=>{
-      // ボタンにクリック処理を追加
-      miro.board.ui.initDraggableItemsContainer(CONFIG.$.sizechange, {
-        draggableItemSelector: `.change_in.${T1}.${T2.toLowerCase()}`,
-        onClick: () => {
-          UPDATE[T1][T2]();
-        }
-      })
+    type1.map((T1) => {
+        type2.map((T2) => {
+            // ボタンにクリック処理を追加
+            miro.board.ui.initDraggableItemsContainer(CONFIG.$.sizechange, {
+                draggableItemSelector: `.change_in.${T1}.${T2.toLowerCase()}`,
+                onClick: () => {
+                    UPDATE[T1][T2]();
+                }
+            })
+        });
+        type3.map((T3) => {
+            // ボタンにクリック処理を追加
+            miro.board.ui.initDraggableItemsContainer(CONFIG.$.sizechange, {
+                draggableItemSelector: `.change_in.${T1}.${T3}`,
+                onClick: () => {
+                    UPDATE[T1][T3]();
+                }
+            })
+        });
     });
-  });
 }
