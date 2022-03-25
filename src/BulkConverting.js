@@ -16,6 +16,9 @@ const CONFIG = {
     fontSize: {
       default: 7,
       list: [10,12,14,18,24,36,48,64,80,144,288,999]
+    },
+    height: {
+      list: [3110, 1480, 665, 108]
     }
   }
 };
@@ -93,6 +96,20 @@ const UPDATE = {
       UPDATE.Styles('fontSize',-1);
     },
   },
+  height: {
+    one: function() {
+        UPDATE.Styles('height', 0);
+    },
+    two: function() {
+        UPDATE.Styles('height', 1);
+    },
+    four: function() {
+        UPDATE.Styles('height', 2);
+    },
+    sixteen: function() {
+        UPDATE.Styles('height', 3);
+    },
+  },
   Styles: async function(type,_change){
     
     const change = _change || false;
@@ -147,6 +164,18 @@ const UPDATE = {
               console.log(newWidth);
               updateStyles.width = newWidth;
               break;
+            case 'height':
+              //if (!flgWidth) { return false }
+              let newHeight;
+              if (change) {
+                  newHeight = CONFIG.style.height.list[change];
+              } else {
+                  newHeight = CONFIG.style.height.list[0]
+              }
+              document.getElementById('selected-btn-width-value').innerHTML = newHeight;
+              console.log(newHeight);
+              updateStyles.height = newHeight;
+              break;
             }
           
           // 更新
@@ -154,7 +183,8 @@ const UPDATE = {
             id: widget.id, // 更新に必要なウィジェットID
             text: widget.text, // textを更新元ウィジェットから設定しないと削除されるので注意
             style: updateStyles.style,
-            width: updateStyles.width
+            width: updateStyles.width,
+            height: updateStyles.height
           });
         }
         return updatedWidget[0];
@@ -183,7 +213,9 @@ miro.onReady(async function(){
 });
 
 async function selectionWidgetsUpdate() {
-  const type1 = ['width','font'], type2 = ['recommend','up','down'];
+  const type1 = ['width', 'font', 'height'],
+        type2 = ['recommend', 'up', 'down'],
+        type3 = ['one', 'two', 'four', 'sixteen'];
 
   type1.map((T1)=>{
     type2.map((T2)=>{
@@ -195,5 +227,14 @@ async function selectionWidgetsUpdate() {
         }
       })
     });
+    type3.map((T3) => {
+      // ボタンにクリック処理を追加
+      miro.board.ui.initDraggableItemsContainer(CONFIG.$.sizechange, {
+          draggableItemSelector: `.change_in.${T1}.${T3}`,
+          onClick: () => {
+              UPDATE[T1][T3]();
+          }
+      })
+  });
   });
 }
