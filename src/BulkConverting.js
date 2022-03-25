@@ -172,7 +172,6 @@ const UPDATE = {
               } else {
                   newHeight = CONFIG.style.height.list[0]
               }
-              document.getElementById('selected-btn-width-value').innerHTML = newHeight;
               console.log(newHeight);
               updateStyles.height = newHeight;
               break;
