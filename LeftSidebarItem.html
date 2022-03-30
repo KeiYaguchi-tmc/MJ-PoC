@@ -84,7 +84,7 @@
           <!-- <p>選択した範囲内の工程記号に対して一括編集<br/>※他の図形には影響ありません</p> -->
         </div>
         <div class="border col">
-          <div class="set">
+          <div class="set-font">
             <p>文字サイズ</p>
           </div>
           <div class="set col">
@@ -104,7 +104,7 @@
         </div>
 
         <div class="border col">
-          <div class="set">
+          <div class="set-font">
             <p>工程記号の幅</p>
           </div>
           <div class="set col">
@@ -124,16 +124,14 @@
         </div>
 
         <div class="border col">
-          <div class="set">
+          <div class="set-font">
             <p>工程記号の高さ</p>
           </div>
-          <div class="set col">
-            <div>
-              <button type="button" class="change_in height one" id="size-change-font-1">1/1</button>
-              <button type="button" class="change_in height two" id="size-change-font-2">1/2</button>
-              <button type="button" class="change_in height four" id="size-change-font-4">1/4</button>
-              <button type="button" class="change_in height sixteen" id="size-change-font-16">1/16</button>
-            </div>
+          <div class="set col fraction-button">
+            <button type="button" class="change_in height one" id="size-change-font-1"><span class="numerator">1/</span><span class="denominator">1</span></button>
+            <button type="button" class="change_in height two" id="size-change-font-2"><span class="numerator">1/</span><span class="denominator">2</span></button>
+            <button type="button" class="change_in height four" id="size-change-font-4"><span class="numerator">1/</span><span class="denominator">4</span></button>
+            <button type="button" class="change_in height sixteen" id="size-change-font-16"><span class="numerator">1/</span><span class="denominator">16</span></button>
           </div>
         </div>
 
