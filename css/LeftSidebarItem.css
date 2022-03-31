@@ -293,18 +293,62 @@ article > *:not(:first-child) {
   }
   .border .set {
     display: flex;
-    /* justify-content: center; */
+    /* justify-content: space-between; */
     align-items: center;
     height: 50px;
     padding: 0 1em;
     font-weight: bold;
   }
+  .border .set-font {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    font-weight: bold;
+  }
   .border .set:first-of-type {
+    justify-content: center;
+  }
+  .border .set-font:first-of-type {
     justify-content: center;
   }
 .border p {
   font-weight: bold;
 }
+
+.fraction-button{
+  display: flex;
+  justify-content: space-between;
+}
+
+.fraction-button > button {
+  text-align: center;
+  width: 34px;
+  height: 34px;
+}
+
+.numerator {
+  font-size: 10px;
+  font-weight: bold;
+  vertical-align: super;
+  font-family: Arial, sans-serif;
+  position: relative;
+  bottom: 5px;
+  right: 9px;
+  z-index: 1;
+}
+
+.denominator {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  position: relative;
+  top: 3px;
+  right: 9px;
+  z-index: 2;
+}
+
+
 #size-change .value {
   width: 4em;
   display: flex;
