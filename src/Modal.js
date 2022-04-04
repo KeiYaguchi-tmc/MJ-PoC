@@ -13,3 +13,19 @@ const func = {
 }
 
 document.addEventListener('DOMContentLoaded', () => init.modal())
+
+const open = {
+    modal: () => {
+        const guidebook = document.getElementById("sumahoguidebook")
+        guidebook.addEventListener('click', funce.displaymodal);
+    },
+}
+
+const funce = {
+    displaymodal: () => {
+        miro.board.ui.openModal("QRchord.html", { width: 280, height: 330 });
+        console.log("QRchord。")
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => open.modal())
