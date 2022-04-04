@@ -5,33 +5,7 @@ body {
     overflow-y: auto;
 }
 
-/*
-.topNavigation {
-    height: 200px;
-    text-align: center;
-    background-color: #3f67fb;
-    color: #fff;
-    line-height: 50px;
-}
-*/
-/*
-::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--indigo600);
-    border: 0 solid transparent;
-    border-radius: 2px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: initial;
-}
-*/
 .content {
-    /*display: flex;*/
     height: 250px;
     width: 100%;
     margin-top: 10px;
@@ -50,15 +24,11 @@ body {
     width: 100%;
 }
 
+/*画像データ*/
 img {
     width: auto;
     height: 250px;
     margin: 0 auto;
-}
-
-p {
-    width: 100px;
-    margin: 0;
 }
 
 /*改行*/

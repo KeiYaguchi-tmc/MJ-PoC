@@ -193,11 +193,6 @@
   transition: .3s all;
   cursor: pointer;
 }
-.guide-list--book {
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-}
 
 .guide-list--book__btn:hover {
   opacity: .5;
@@ -205,6 +200,12 @@
 
 .guide-list--book__btn img + span {
   padding-left: 12px;
+}
+
+.guide-list--book {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 枠線*/
