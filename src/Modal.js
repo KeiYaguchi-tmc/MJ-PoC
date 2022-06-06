@@ -24,7 +24,7 @@ const func = {
 
 //DOMツリーロード時に実行
 //工場マーク
-document.addEventListener('DOMContentLoaded', () => init.modal())
+document.addEventListener('DOMContentLoaded', () => init.kojoModal())
 //ボードの共同編集方法
 document.addEventListener('DOMContentLoaded', () => init.boardShareEditModal())
 
