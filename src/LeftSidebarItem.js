@@ -3,7 +3,7 @@ const widgets = [
     {
         class: 'shapes',
         color: '#d3d3d3',
-        width: 140,
+        width: 90,
         height: 3110,
         type: 3,
     },
@@ -11,7 +11,7 @@ const widgets = [
     {
         class: 'shapes',
         color: '#d3d3d3',
-        width: 140,
+        width: 90,
         height: 1480,
         type: 3,
     },
@@ -19,7 +19,7 @@ const widgets = [
     {
         class: 'shapes',
         color: '#d3d3d3',
-        width: 140,
+        width: 90,
         height: 665,
         type: 3,
     },
