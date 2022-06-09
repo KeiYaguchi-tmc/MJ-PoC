@@ -11,7 +11,7 @@ const CONFIG = {
   style: {
     width: {
       change: 0.2,
-      default: 140
+      default: 90
     },
     fontSize: {
       default: 7,

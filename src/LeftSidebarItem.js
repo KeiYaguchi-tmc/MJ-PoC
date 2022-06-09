@@ -3,7 +3,7 @@ const widgets = [
     {
         class: 'shapes',
         color: '#d3d3d3',
-        width: 140,
+        width: 90,
         height: 3110,
         type: 3,
     },
@@ -11,7 +11,7 @@ const widgets = [
     {
         class: 'shapes',
         color: '#d3d3d3',
-        width: 140,
+        width: 90,
         height: 1480,
         type: 3,
     },
@@ -19,7 +19,7 @@ const widgets = [
     {
         class: 'shapes',
         color: '#d3d3d3',
-        width: 140,
+        width: 90,
         height: 665,
         type: 3,
     },
@@ -75,10 +75,18 @@ function addContents(container) {
 
 // ボードに画像を描画する
 function createImage(canvasX, canvasY, url) {
+    console.log(url.indexOf("icon05_.svg"));
+    //2022/06/08対応
+    //icon05:停滞マーク 縮小対応
+    //その他画像 変更なし(scale=10)
+    let img_scale = 10;
+    if (url.indexOf("icon05_.svg") !== -1) {
+        img_scale = 4;
+    }
     return miro.board.widgets.create({
         type: 'image',
         url: url,
-        scale: 10,
+        scale: img_scale,
         x: canvasX,
         y: canvasY,
     })
@@ -149,7 +157,9 @@ function bootstrap() {
         },
         onDrop: async(canvasX, canvasY) => {
             console.log('image create')
+            //画像作成
             await createImage(canvasX, canvasY, currentImageUrl)
+            //ストアマークだった場合、外枠をつける
             if (currentImageUrl.indexOf("icon08_") !== -1) {
                 miro.board.widgets.create({
                     type: 'shape',
