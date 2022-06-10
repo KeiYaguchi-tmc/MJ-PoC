@@ -22,7 +22,7 @@ body {
     text-align: left;
     height: 25px;
     width: 100%;
-    font-size: 17px;
+    font-size: 21px;
 }
 
 
@@ -30,16 +30,42 @@ body {
     padding: 0.5em 1em;
     margin: 2em 0;
     font-weight: bold;
+    font-size: 3px;
     border: solid 3px #000000;
-    margin-left:40px;
-    margin-right: 25px;
+    margin-left: 60px;
+    margin-right: 75px;
     margin-top: 15px;
 }
+
 .box1 p {
     margin: 0; 
     padding: 0;
     font-size: 15px;
 }
+
+/* コピーボタン */
+.copy_btn {
+    width:19%!important;
+    padding: 6px 0;
+    margin-left: 468px;
+    margin-top: 15px;
+    /* margin-right: auto!important; */
+    color:#ffffff;
+    font-weight:bold;
+    background:#000000;
+    border: solid 2px #000000;
+    border-radius: 3px;
+    transition: .4s;
+    text-align: center;
+  }
+   
+  .copy_btn:hover {
+     background: #ffffff;
+     color: #000000;
+    }
+  .copy_btn:hover {
+      cursor: pointer;
+    }
 /*改行*/
 span{
     display: block;
