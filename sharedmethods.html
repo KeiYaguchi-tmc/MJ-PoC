@@ -8,23 +8,52 @@
     
 </head>
 
-
+<!-- ボード共有編集方法ポップアップ -->
 <body>
-    <header class="topNavigation"><b>ボード共有の編集方法</b></header>
+    <header class="topNavigation"><b>物と情報の同時編集方法</b></header>
     <div class="content">
-        <div class="qrcomment">　＜招待する側＞</div>
-        <div class="qrcomment">　　1.共同編集したいメンバーに下記を展開</div>
-
-        <div class="box1">
+        <!-- <div class="qrcomment">　＜招待する側＞</div> -->
+        <!-- <div class="qrcomment">　　下記をコピーして同時編集したいメンバーに送ってください</div> -->
+        <div class="qrcomment">　　下記をコピーして同時編集したいメンバーに送ってください</div>
+        <button class="copy_btn" onclick = "copy()">
+            メッセージコピー
+        </button>
+        <div class="box1" id="optional">
             <p>1.メンバーシップ会員申請＆Miroライセンス取得</p>
             <p>https://apps.powerapps.com/play/d00b1a27-676f-4773-9f1e-08e759130dad?tenantId=d1c1335e-f582-42a9-b6fe-5e1a16eb9bc8&source=portal&screenColor=RGBA(0%2C176%2C240%2C1)</p>
             <p id="p2">2.ボードURLにアクセス</p>
             
         </div>
-        <div class="qrcomment">　　これをコピーして招待したい人に送ってください</div>
+
+
     </div>
     <script type="text/javascript" src="https://miro.com/app/static/sdk.1.1.js"></script>
     <script type="text/javascript" src="src/sharedmethods.js"></script>
+
+    <!-- コピースクリプト -->
+    <script>
+     function copy() {
+     //p要素の文字列を取得
+     var text = document.getElementById("optional");
+     console.log(text);
+
+     // コピー内容を選択する.
+     let range = document.createRange();
+     range.selectNodeContents(text);
+     let selection = window.getSelection();
+     selection.removeAllRanges();
+     selection.addRange(range);
+     // 選択したものをコピーする.
+     document.execCommand('copy');
+     // コピー内容の選択を解除する.
+     selection.removeAllRanges();
+     // コピーをお知らせする
+     alert("コピーが完了しました" );
+
+     }
+    </script>
+
+
 </body>
            
 

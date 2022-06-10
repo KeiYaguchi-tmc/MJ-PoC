@@ -17,7 +17,7 @@ const func = {
         console.log("工場マークの使い方を表示します。")
     },
     boardShareEditModal_display: () => {
-        miro.board.ui.openModal("sharedmethods.html", { width: 700, height: 450 });
+        miro.board.ui.openModal("sharedmethods.html", { width: 670, height: 390 });
         console.log("ボードの共同編集方法を表示します。")
     },
 }
