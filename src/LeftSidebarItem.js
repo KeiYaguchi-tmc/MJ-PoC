@@ -6,6 +6,7 @@ const widgets = [
         width: 90,
         height: 3110,
         type: 3,
+        
     },
     //工程1/2
     {
@@ -105,8 +106,8 @@ function createShape(canvasX, canvasY, no) {
             backgroundColor: widgets[no].color,
             backgroundOpacity: 1,
             bold: 1,
-            borderWidth: 7,
-            borderColor: '#000',
+            borderWidth: 1,
+            borderColor: '#808080',
             fontFamily: 0,
             fontSize: 64,
             shapeType: widgets[no].type,
