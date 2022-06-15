@@ -6,7 +6,6 @@ const widgets = [
         width: 90,
         height: 3110,
         type: 3,
-        
     },
     //工程1/2
     {
