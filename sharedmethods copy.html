@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <link href="css/sharedmethods.css" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" href="https://unpkg.com/mirotone/dist/styles.css">
+    
 </head>
 
 <!-- ボード共有編集方法ポップアップ -->
 <body>
     <header class="topNavigation"><b>物と情報の同時編集方法</b></header>
     <div class="content">
-        <div class="message">メッセージをコピーして同時編集したいメンバーに送ってください
-        </div>
+        <!-- <div class="qrcomment">　＜招待する側＞</div> -->
+        <!-- <div class="qrcomment">　　下記をコピーして同時編集したいメンバーに送ってください</div> -->
+        <div class="qrcomment">メッセージをコピーして同時編集したいメンバーに送ってください</div>
         <button class="copy_btn" onclick = "copy()">
             メッセージコピー
         </button>
@@ -22,8 +24,9 @@
             <p id="p2">2.ボードURLにアクセス</p>
             
         </div>
+
+
     </div>
-    
     <script type="text/javascript" src="https://miro.com/app/static/sdk.1.1.js"></script>
     <script type="text/javascript" src="src/sharedmethods.js"></script>
 

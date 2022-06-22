@@ -1,73 +1,18 @@
 html,
 body {
-    height: 320px;
+    height: auto;
     width: 100%;
     overflow-y: auto;
 }
 
+header {
+    height: 40px;
+    width: auto;
+    margin: 0 auto;
+}
+
 .content {
-    height: 200px;
-    width: 100%;
-    margin-top: 10px;
+    height: Auto;
+    width: auto;
+    margin: 0 auto;
 }
-
-.topNavigation {
-    height: 50px;
-    text-align: center;
-    font-size:25px;
-    padding-top: 15px;
-}
-
-.qrcomment{
-    text-align: left;
-    height: 25px;
-    width: 100%;
-    font-size: 21px;
-}
-
-
-.box1 {
-    padding: 0.5em 1em;
-    margin: 2em 0;
-    font-weight: bold;
-    font-size: 3px;
-    border: solid 3px #000000;
-    margin-left: 60px;
-    margin-right: 75px;
-    margin-top: 15px;
-}
-
-.box1 p {
-    margin: 0; 
-    padding: 0;
-    font-size: 15px;
-}
-
-/* コピーボタン */
-.copy_btn {
-    width:19%!important;
-    padding: 6px 0;
-    margin-left: 468px;
-    margin-top: 15px;
-    /* margin-right: auto!important; */
-    color:#ffffff;
-    font-weight:bold;
-    background:#000000;
-    border: solid 2px #000000;
-    border-radius: 3px;
-    transition: .4s;
-    text-align: center;
-  }
-   
-  .copy_btn:hover {
-     background: #ffffff;
-     color: #000000;
-    }
-  .copy_btn:hover {
-      cursor: pointer;
-    }
-/*改行*/
-span{
-    display: block;
-}
-
