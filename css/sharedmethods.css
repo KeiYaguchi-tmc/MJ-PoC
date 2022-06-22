@@ -31,7 +31,7 @@ header {
 .message {
     height: 40;
     width: auto;
-    margin: 10px 0;
+    margin: 10px 0 0;
 }
 
 button {
@@ -53,21 +53,34 @@ button:active {
 }
 
 .copy_btn {
-    height: 10;
-    width: 20;
-    margin: 10px 0 10px auto;
+    height: 40px;
+    width: 160px;
+    margin: 10px 0;
 }
 
 .box1 {
     height: auto;
     width: auto;
-    margin: 10px 0;
+    margin: 0 0;
     text-align: right;
 }
 
 .box2 {
     height: 200;
     width: auto;
-    margin: 10px 0;
-    border: 1px solid grey;
+    margin: 0 0;
+    border: 1px solid rgb(171, 171, 171);
+    word-break: break-all;
+    padding: 0 6px;
+    
+}
+
+p{
+    margin: 0 0 5px;
+    font-size: 10px;
+}
+
+.text1{
+    font-size: 16px!important;
+    font-weight: bold;
 }
