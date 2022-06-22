@@ -1,3 +1,11 @@
+:root {
+    --color-default: #000026;
+    --color-white: #fff;
+    --color-red: #c00;
+    --color-border: #e8e8e8;
+    --color-blue: #3f67fb;
+}
+
 html,
 body {
     height: auto;
@@ -6,13 +14,60 @@ body {
 }
 
 header {
-    height: 40px;
-    width: auto;
+    height: auto;
+    width: 90%;
     margin: 0 auto;
+    padding: 5px 0;
+    font-size: 28px;
+    text-align: center;
 }
 
 .content {
     height: Auto;
-    width: auto;
+    width: 90%;
     margin: 0 auto;
+}
+
+.message {
+    height: 40;
+    width: auto;
+    margin: 10px 0;
+}
+
+button {
+    background-color: var(--color-blue);
+    padding: 3px 15px;
+    color: var(--color-white);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.copy_btn {
+    height: 10;
+    width: 20;
+    margin: 10px 0 10px auto;
+}
+
+.box1 {
+    height: auto;
+    width: auto;
+    margin: 10px 0;
+    text-align: right;
+}
+
+.box2 {
+    height: 200;
+    width: auto;
+    margin: 10px 0;
+    border: 1px solid grey;
 }
