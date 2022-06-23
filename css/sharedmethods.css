@@ -1,73 +1,86 @@
+:root {
+    --color-default: #000026;
+    --color-white: #fff;
+    --color-red: #c00;
+    --color-border: #e8e8e8;
+    --color-blue: #3f67fb;
+}
+
 html,
 body {
-    height: 320px;
+    height: auto;
     width: 100%;
     overflow-y: auto;
 }
 
-.content {
-    height: 200px;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.topNavigation {
-    height: 50px;
+header {
+    height: auto;
+    width: 90%;
+    margin: 0 auto;
+    padding: 5px 0;
+    font-size: 28px;
     text-align: center;
-    font-size:25px;
-    padding-top: 15px;
 }
 
-.qrcomment{
-    text-align: left;
-    height: 25px;
-    width: 100%;
-    font-size: 21px;
+.content {
+    height: Auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
+.message {
+    height: 40;
+    width: auto;
+    margin: 10px 0 0;
+}
+
+button {
+    background-color: var(--color-blue);
+    padding: 3px 15px;
+    color: var(--color-white);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.copy_btn {
+    height: 40px;
+    width: 160px;
+    margin: 10px 0;
+}
 
 .box1 {
-    padding: 0.5em 1em;
-    margin: 2em 0;
+    height: auto;
+    width: auto;
+    margin: 0 0;
+    text-align: right;
+}
+
+.box2 {
+    height: 200;
+    width: auto;
+    margin: 0 0;
+    border: 1px solid rgb(171, 171, 171);
+    word-break: break-all;
+    padding: 0 6px;
+    
+}
+
+p{
+    margin: 0 0 5px;
+    font-size: 10px;
+}
+
+.text1{
+    font-size: 16px!important;
     font-weight: bold;
-    font-size: 3px;
-    border: solid 3px #000000;
-    margin-left: 60px;
-    margin-right: 75px;
-    margin-top: 15px;
 }
-
-.box1 p {
-    margin: 0; 
-    padding: 0;
-    font-size: 15px;
-}
-
-/* コピーボタン */
-.copy_btn {
-    width:19%!important;
-    padding: 6px 0;
-    margin-left: 468px;
-    margin-top: 15px;
-    /* margin-right: auto!important; */
-    color:#ffffff;
-    font-weight:bold;
-    background:#000000;
-    border: solid 2px #000000;
-    border-radius: 3px;
-    transition: .4s;
-    text-align: center;
-  }
-   
-  .copy_btn:hover {
-     background: #ffffff;
-     color: #000000;
-    }
-  .copy_btn:hover {
-      cursor: pointer;
-    }
-/*改行*/
-span{
-    display: block;
-}
-
