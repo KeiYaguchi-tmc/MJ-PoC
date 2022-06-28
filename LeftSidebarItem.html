@@ -61,7 +61,7 @@
   <div class="tab-wrapper">
     <ul class="tab-ctrl">
       <li class="tab-ctrl-btn active" data-tab-target="1">ツール</li>
-      <li class="tab-ctrl-btn" data-tab-target="2">操作・同時編集方法</li>
+      <li class="tab-ctrl-btn" data-tab-target="2">操作方法</li>
     </ul>
 
     <div class="tab-content tool show" data-tab-index="1">
@@ -75,9 +75,12 @@
               </button>
             </li>
             <li class="guide-list--item item__secondary">
-              <a class="guide-list--item__btn" href="https://miro.com/oauth/authorize/?response_type=code&client_id=3458764518042744743&redirect_uri=/confirm-app-install/&team_id=3458764515809840810" target="_top">
+              <!-- <a class="guide-list--item__btn" href="https://miro.com/oauth/authorize/?response_type=code&client_id=3458764518042744743&redirect_uri=/confirm-app-install/&team_id=3458764515809840810" target="_top">
                 <span>アプリが動かない場合(再インストール)</span>
-              </a>
+              </a> -->
+              <button class="guide-list--item__btn" id="board-reinstall-method" style="font-weight: normal;">
+                <span>アプリが動かない場合(再インストール)</span>
+              </button>
             </li>
           </ul>
         </article>
@@ -89,12 +92,12 @@
           <!-- <p>ドラッグ&ドロップで使用</p> -->
         </div>
         <div id="container"></div>
-        <div class="col process-info">
+        <!-- <div class="col process-info">
           <button type="button" class="process-info--btn" id="factorymark">
             <img class="process-info--btn__image" src="./img/proess.svg" alt="">
             <span class="process-info--btn__label">工場マークの出し方はコチラ</span>
           </button>
-        </div>
+        </div> -->
       </article>
 
       <!-- App: 物の流れ線描写モード -->
@@ -209,6 +212,12 @@
               <span>お問い合わせ</span>
             </a>
           </li>
+          <li class="guide-list--item item__secondary">
+              <button class="guide-list--item__btn" id="factorymark" style="font-weight: normal;">
+                <span>工場マークの出し方はコチラ</span>
+              </button>
+            </div>
+          </li>
         </ul>
       </article>
     </div>
@@ -219,7 +228,7 @@
   <script src="src/Tab.js"></script>
   <script src="src/LeftSidebarItem.js"></script>
   <script src="src/DrawLine.js"></script>
-  <script type="module" src="src/Modal.js"></script>
+  <script type="module" src="src/Init.js"></script>
   <script type="module" src="src/BulkConverting.js"></script>
   <script type="module" src="src/SelectOnlyProcess.js"></script>
   <script type="module" src="src/ToolTips.js"></script>
