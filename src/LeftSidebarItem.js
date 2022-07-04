@@ -132,7 +132,7 @@ function createLine(canvasX, canvasY, no) {
             lineStartStyle: widgets[no].start,
             lineEndStyle: widgets[no].end, //filled_arrow=8
             lineStyle: widgets[no].style, //実線=2 , 点線=1
-            lineType: 0, //曲がり度
+            lineType: 2, //曲がり度
         },
     })
 }

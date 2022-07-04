@@ -61,10 +61,26 @@
   <div class="tab-wrapper">
     <ul class="tab-ctrl">
       <li class="tab-ctrl-btn active" data-tab-target="1">ツール</li>
-      <li class="tab-ctrl-btn" data-tab-target="2">操作・同時編集方法</li>
+      <li class="tab-ctrl-btn" data-tab-target="2">操作方法</li>
     </ul>
 
     <div class="tab-content tool show" data-tab-index="1">
+      <!-- App: Share-Link-->
+        <article>
+          <ul class="guide-list">
+            <li class="guide-list--item item__secondary">
+              <button class="guide-list--item__btn" id="board-share-edit-method" style="font-weight: normal;">
+                <span>物と情報の同時編集方法</span>
+              </button>
+            </li>
+            <li class="guide-list--item item__secondary">
+              <button class="guide-list--item__btn" id="board-reinstall-method" style="font-weight: normal;">
+                <span>アプリが動かない場合(再インストール)</span>
+              </button>
+            </li>
+          </ul>
+        </article>
+
       <!-- App: Drag-and-Drop -->
       <article style="padding-bottom: 2px;">
         <div class="col" id="help1">
@@ -72,12 +88,12 @@
           <!-- <p>ドラッグ&ドロップで使用</p> -->
         </div>
         <div id="container"></div>
-        <div class="col process-info">
+        <!-- <div class="col process-info">
           <button type="button" class="process-info--btn" id="factorymark">
             <img class="process-info--btn__image" src="./img/proess.svg" alt="">
             <span class="process-info--btn__label">工場マークの出し方はコチラ</span>
           </button>
-        </div>
+        </div> -->
       </article>
 
       <!-- App: 物の流れ線描写モード -->
@@ -168,29 +184,22 @@
     <div class="tab-content guide" data-tab-index="2">
       <article id="guideList">
         <ul class="guide-list">
-          <!-- <li class="guide-list--item item__primary">
-            <a class="guide-list--item__btn"
-              href="http://nt-wave.mx.toyota.co.jp/tmc/247/Pages/Guidebook/%E7%89%A9%E6%83%85%E7%B7%A82/index.html#page=1"
-              target="_blank">
-              <img src="./img/book.svg" alt="">
-              <span>物と情報の流れ図ガイドブック</span>
-            </a>
-          </li> -->
+
           <li class="guide-list--item item__secondary">
             <a class="guide-list--item__btn" href="https://toyotajp.sharepoint.com/sites/msteams_2de582/SitePages/%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95.aspx" target="_blank">
               <span>各機能概要・操作方法</span>
             </a>
           </li>
           <li class="guide-list--item item__secondary">
-            <!-- <a class="guide-list--item__btn" href="https://toyotajp.sharepoint.com/sites/msteams_2de582/SitePages/%E3%83%81%E3%83%BC%E3%83%A0%E5%A4%96%E3%81%B8%E3%81%AE%E3%83%9C%E3%83%BC%E3%83%89%E5%85%B1%E6%9C%89%E6%96%B9%E6%B3%95.aspx?csf=1&web=1&e=vhbxlD&cid=96f283b8-45fa-4924-87bd-6ea15efcf884" target="_blank"> -->
-            <button class="guide-list--item__btn" id="board-share-edit-method" style="font-weight: normal;">
-              <span>物と情報の同時編集方法</span>
-            </button>
-          </li>
-          <li class="guide-list--item item__secondary">
             <a class="guide-list--item__btn" href="https://teams.microsoft.com/l/channel/19%3A196dc8776dbb48268e4aea0a6e78465e%40thread.tacv2/%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B?groupId=1658d27c-41bc-4fa7-bc8c-fe05051c8cb7&tenantId=d1c1335e-f582-42a9-b6fe-5e1a16eb9bc8" target="_blank">
               <span>お問い合わせ</span>
             </a>
+          </li>
+          <li class="guide-list--item item__secondary">
+              <button class="guide-list--item__btn" id="factorymark" style="font-weight: normal;">
+                <span>工場マークの出し方はコチラ</span>
+              </button>
+            </div>
           </li>
         </ul>
       </article>
@@ -202,7 +211,7 @@
   <script src="src/Tab.js"></script>
   <script src="src/LeftSidebarItem.js"></script>
   <script src="src/DrawLine.js"></script>
-  <script type="module" src="src/Modal.js"></script>
+  <script type="module" src="src/Init.js"></script>
   <script type="module" src="src/BulkConverting.js"></script>
   <script type="module" src="src/SelectOnlyProcess.js"></script>
   <script type="module" src="src/ToolTips.js"></script>
