@@ -169,6 +169,8 @@ function bootstrap() {
                     width: 320, 
                     style: {
                         backgroundColor: "#fff9b1",
+                        borderOpacity:0.0,
+                        fontSize:48,
                     },
                 });
             }
