@@ -159,21 +159,6 @@ function bootstrap() {
             console.log('image create')
             //画像作成
             await createImage(canvasX, canvasY, currentImageUrl)
-            //ストアマークだった場合、外枠をつける
-            if (currentImageUrl.indexOf("icon08_") !== -1) {
-                miro.board.widgets.create({
-                    type: 'shape',
-                    x: canvasX,
-                    y: canvasY,
-                    width: 400,
-                    height: 1000,
-                    style: {
-                        borderWidth: 7,
-                        borderColor: '#000',
-                        shapeType: 3,
-                    },
-                })
-            }
         },
     }
     miro.board.ui.initDraggableItemsContainer(container, imageOptions)
