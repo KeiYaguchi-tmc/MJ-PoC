@@ -5,7 +5,7 @@
 .tab-ctrl {
   display: flex;
   flex-wrap: wrap;
-  padding: 14px 17px 0;
+  padding: 10px 17px 0;
 }
 
 .tab-ctrl .tab-ctrl-btn {
@@ -51,7 +51,6 @@
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  top: 40px;
   left: 0;
   z-index: 1;
   width: 100%;
@@ -62,6 +61,11 @@
 .tab-content.show {
   visibility: visible;
   opacity: 1;
+}
+
+.tab-content article{
+  padding-top:10px;
+  padding-bottom:0px;
 }
 
 .question {
@@ -176,9 +180,9 @@
   padding-left: 12px;
 }
 
-/* .guide-list--item.item__primary {
-  margin-bottom: 16px;
-} */
+.guide-list .guide-list--item.item__primary {
+  margin-bottom: 10px;
+}
 
 
 .guide-list--book__btn {
