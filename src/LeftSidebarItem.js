@@ -51,11 +51,11 @@ function addContents(container) {
     for (var i = 1; i <= buttonLength; i++) {
         const num = ('0' + i).slice(-2);
         container.innerHTML += `
-        <div class="draggable-item ${i>7?'sub':''}">
-            <img class="${(widgets[i-1]||{}).class}" 
+        <div class="draggable-item ${i > 7 ? 'sub' : ''}">
+            <img class="${(widgets[i - 1] || {}).class}" 
                  src="img/icon${num}.svg" 
                  preview="https://KeiYaguchi-tmc.github.io/MJ-PoC/img/icon${num}_.svg" 
-                 datano="${i-1}">
+                 datano="${i - 1}">
         </div>
       `;
     }
@@ -155,10 +155,23 @@ function bootstrap() {
                 url: currentImageUrl,
             }
         },
-        onDrop: async(canvasX, canvasY) => {
+        onDrop: async (canvasX, canvasY) => {
             console.log('image create')
             //画像作成
             await createImage(canvasX, canvasY, currentImageUrl)
+            //かんばんマークだった場合、付箋を付ける
+            if (currentImageUrl.indexOf("icon07_") !== -1) {
+                miro.board.widgets.create({
+                    type: "shape",
+                    x: canvasX - 50,
+                    y: canvasY + 40,
+                    height: 200,
+                    width: 320, 
+                    style: {
+                        backgroundColor: "#fff9b1",
+                    },
+                });
+            }
         },
     }
     miro.board.ui.initDraggableItemsContainer(container, imageOptions)
@@ -198,8 +211,8 @@ function bootstrap() {
 
 miro.onReady(bootstrap);
 
-$(function() {
-    $(document).on('click', '.openclose', function() {
+$(function () {
+    $(document).on('click', '.openclose', function () {
         $(this).closest('#container').toggleClass('on');
         $(this).closest('#container').find('.draggable-item.sub').slideToggle(300);
     });
